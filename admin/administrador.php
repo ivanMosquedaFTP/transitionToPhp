@@ -1,15 +1,12 @@
 <?php
-require_once ('seccion.class.php');
-require_once ('invernadero.class.php');
-$appInvernadero = new invernadero();
-$app = new seccion();
+require_once ('administrador.class.php');
+$app = new administrador();
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
-        $invernaderos = $appInvernadero -> readAll();
-        include 'views/seccion/crear.php';
+        include 'views/administrador/crear.php';
         break;
     }
 
@@ -17,22 +14,21 @@ switch ($accion) {
         $data=$_POST['data'];
         $resultado = $app->create($data);
         if ($resultado) {
-            $mensaje = "Sección dada de alta correctamente";
+            $mensaje = "Administrador dada de alta correctamente";
             $tipo = "success";
         } else {
-            $mensaje = "La sección no ha sido dado de alta";
+            $mensaje = "El administrador no ha sido dado de alta";
             $tipo = "danger";
         }
 
-        $secciones = $app->readAll();
-        include('views/seccion/index.php');
+        $administradores = $app->readAll();
+        include('views/administrador/index.php');
         break;
     }
 
     case 'actualizar': {
-        $secciones = $app -> readOne($id); 
-        $invernaderos = $appInvernadero -> readAll();
-        include('views/seccion/crear.php');
+        $administradores = $app -> readOne($id); 
+        include('views/administrador/crear.php');
         break;
     }
     
@@ -40,14 +36,14 @@ switch ($accion) {
         $data= $_POST['data'];
         $result=$app->update($id,$data);
         if($result){
-            $mensaje="La sección se ha actualizado";
+            $mensaje="El administrador se ha actualizado";
             $tipo="success";
         }else{
             $mensaje="No se ha actualizado";
             $tipo="danger";
         }
-        $secciones = $app->readAll();
-        include('views/seccion/index.php');
+        $administradores = $app->readAll();
+        include('views/administrador/index.php');
         break;
     }
 
@@ -56,22 +52,22 @@ switch ($accion) {
             if (is_numeric($id)) {
                 $resultado = $app -> delete($id);
                 if ($resultado) {
-                    $mensaje = "La sección se eliminó correctamente";
+                    $mensaje = "El administrador se eliminó correctamente";
                     $tipo = "success";
                 } else {
-                    $mensaje = "La sección no se eliminó correctamente";
+                    $mensaje = "El administrador no se eliminó correctamente";
                     $tipo = "danger";
                 }
             }
         }
-        $secciones = $app->readAll();
-        include('views/seccion/index.php');
+        $administradores = $app->readAll();
+        include('views/administrador/index.php');
         break;
     }
 
     default: {
-        $secciones = $app->readAll();
-        include 'views/seccion/index.php';
+        $administradores = $app->readAll();
+        include 'views/administrador/index.php';
         break;
     }
 }
