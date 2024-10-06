@@ -6,11 +6,10 @@
         $result = [];
         $insertar = [];
         $this -> conexion();
-        $sql="insert into seccion(area, seccion, id_invernadero) values(:area, :seccion, :id_invernadero);";
+        $sql="insert into administrador(nombre, contrasena) values(:nombre, :contrasena);";
         $insertar = $this->con->prepare($sql);
-        $insertar -> bindParam(':area', $data['area'], PDO::PARAM_INT);
-        $insertar -> bindParam(':seccion', $data['seccion'], PDO::PARAM_STR);
-        $insertar -> bindParam(':id_invernadero', $data['id_invernadero'], PDO::PARAM_INT);
+        $insertar -> bindParam(':nombre', $data['nombre'], PDO::PARAM_STR);
+        $insertar -> bindParam(':contrasena', $data['contrasena'], PDO::PARAM_STR);
         $insertar -> execute();
         $result = $insertar -> rowCount();
         return $result;
@@ -19,14 +18,15 @@
     function update ($id, $data){
         $this->conexion();
         $result = [];
-        $sql = 'update seccion set seccion=:seccion, area=:area, id_invernadero=:id_invernadero where id_seccion=:id_seccion;';
-        $modificar=$this->con->prepare($sql);
-        $modificar->bindParam(':seccion',$data['seccion'], PDO::PARAM_STR);
-        $modificar->bindParam(':area',$data['area'], PDO::PARAM_INT);
-        $modificar->bindParam(':id_invernadero',$data['id_invernadero'], PDO::PARAM_INT);
-        $modificar->bindParam(':id_seccion',$id, PDO::PARAM_INT);
-        $modificar->execute();
-        $result= $modificar->rowCount();
+        if (is_numeric($id)) {
+            $sql = 'update administrador set nombre=:nombre, contrasena=:contrasena where id=:id;';
+            $modificar=$this->con->prepare($sql);
+            $modificar->bindParam(':nombre',$data['nombre'], PDO::PARAM_STR);
+            $modificar->bindParam(':contrasena',$data['contrasena'], PDO::PARAM_STR);
+            $modificar->bindParam(':id',$id, PDO::PARAM_INT);
+            $modificar->execute();
+            $result= $modificar->rowCount();
+        }
         return $result;
     }
 
@@ -34,9 +34,9 @@
         $this -> conexion();
         $result = [];
         if (is_numeric($id)) {
-            $sql = "delete from seccion where id_seccion=:id_seccion;";
+            $sql = "delete from administrador where id=:id;";
             $eliminar = $this->con->prepare($sql);
-            $eliminar -> bindParam(':id_seccion', $id, PDO::PARAM_INT);
+            $eliminar -> bindParam(':id', $id, PDO::PARAM_INT);
             $eliminar -> execute();
             $result = $eliminar -> rowCount();
         }
@@ -46,9 +46,9 @@
     function readOne ($id){
         $this->conexion();
         $result = [];
-        $consulta = 'SELECT * FROM seccion where id_seccion=:id_seccion;';
+        $consulta = 'select * from administrador where id=:id;';
         $sql = $this->con->prepare($consulta);
-        $sql->bindParam(":id_seccion",$id,PDO::PARAM_INT);
+        $sql->bindParam(":id",$id,PDO::PARAM_INT);
         $sql -> execute();
 
         $result = $sql->fetch(PDO::FETCH_ASSOC);
@@ -58,7 +58,7 @@
     function readAll (){
         $this -> conexion();
         $result = [];
-        $consulta ='select s.*, i.invernadero from seccion s join invernadero i on s.id_invernadero=i.id_invernadero;';
+        $consulta ='select * from administrador;';
         $sql = $this->con->prepare ($consulta); 
         $sql -> execute();
         $result = $sql -> fetchALL(PDO::FETCH_ASSOC);    
