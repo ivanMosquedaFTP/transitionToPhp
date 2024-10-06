@@ -1,1 +1,9 @@
-//ci
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.whitedOut {
+  text-decoration: none;
+  color: #ffffff;
+}
