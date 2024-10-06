@@ -1,7 +1,7 @@
 <?php
  require_once ('../sistema.class.php');
 
- class Seccion extends sistema {
+ class administrador extends sistema {
     function create ($data){
         $result = [];
         $insertar = [];
