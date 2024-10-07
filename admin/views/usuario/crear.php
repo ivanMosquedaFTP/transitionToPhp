@@ -1,30 +1,35 @@
 <?php require('views/header.php'); ?>
 <center>
-    <h1><?php if($accion=="crear"):echo('Nuevo');else: echo ('Modificar');endif; ?> producto</h1>
+    <h1><?php if($accion=="crear"):echo('Nuevo');else: echo ('Modificar');endif; ?> usuario</h1>
 </center>
 
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <form method="post" action="producto.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
+        <form method="post" action="usuario.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
-            <label for="nombre_producto" class="form-label">Nombre del producto</label>
-            <input class="form-control" type="text" name="data[nombre_producto]" placeholder="Escribe aqui el nombre del producto" value="<?php if(isset($productos["nombre_producto"])):echo($productos['nombre_producto']);endif;?>" id="nombre_producto"/>
+            <label for="nombre_completo" class="form-label">Nombre del usuario</label>
+            <input class="form-control" type="text" name="data[nombre_completo]" placeholder="Escribe aqui el nombre del usuario" value="<?php if(isset($usuarios["nombre_completo"])):echo($usuarios['nombre_completo']);endif;?>" id="nombre_completo"/>
         </div>
 
         <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción del nuevo producto</label>
-            <input class="form-control" type="text" name="data[descripcion]" placeholder="Escribe aqui la descripción del producto"  value="<?php if(isset($productos["descripcion"])):echo($productos['descripcion']);endif;?>"  id="descripcion"/>
+            <label for="telefono" class="form-label">Teléfono del nuevo usuario</label>
+            <input class="form-control" type="text" name="data[telefono]" placeholder="Escribe aqui el teléfono del usuario"  value="<?php if(isset($usuarios["telefono"])):echo($usuarios['telefono']);endif;?>"  id="telefono"/>
         </div>
 
         <div class="mb-3">
-            <label for="precio" class="form-label">Precio del nuevo producto</label>
-            <input class="form-control" type="text" name="data[precio]" placeholder="Escribe aqui el precio del producto"  value="<?php if(isset($productos["precio"])):echo($productos['precio']);endif;?>"  id="precio"/>
+            <label for="contrasena" class="form-label">Contraseña del nuevo usuario</label>
+            <input class="form-control" type="text" name="data[contrasena]" placeholder="Escribe aqui la contraseña del usuario"  value="<?php if(isset($usuarios["contrasena"])):echo($usuarios['contrasena']);endif;?>"  id="contrasena"/>
         </div>
 
         <div class="mb-3">
-            <label for="stock" class="form-label">Stock del nuevo producto</label>
-            <input class="form-control" type="text" name="data[stock]" placeholder="Escribe aqui el stock del producto"  value="<?php if(isset($productos["stock"])):echo($productos['stock']);endif;?>"  id="stock"/>
+            <label for="email" class="form-label">Email del nuevo usuario</label>
+            <input class="form-control" type="text" name="data[email]" placeholder="Escribe aqui el email del usuario"  value="<?php if(isset($usuarios["email"])):echo($usuarios['email']);endif;?>"  id="email"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="total_compras" class="form-label">Total de compras del nuevo usuario</label>
+            <input class="form-control" type="text" name="data[total_compras]" placeholder="Escribe aqui el total de las compras del usuario"  value="<?php if(isset($usuarios["total_compras"])):echo($usuarios['total_compras']);endif;?>"  id="email"/>
         </div>
 
         <input type="submit" value="Guardar" name="data[enviar]" class="btn btn-primary w-100">
