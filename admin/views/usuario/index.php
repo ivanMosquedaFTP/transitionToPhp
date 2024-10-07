@@ -7,21 +7,23 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Nombre del usuario</th>
-      <th scope="col">Descripcion</th>
-      <th scope="col">Precio</th>
-      <th scope="col">Stock</th>
-      <th scope="col">Fecha de publicación</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">contrasena</th>
+      <th scope="col">email</th>
+      <th scope="col">Fecha de registro</th>
+      <th scope="col">Total de compras</th>
     </tr>
   </thead>
   <tbody>
     <?php foreach($usuarios as $usuario): ?>
     <tr>
       <td><?php echo $usuario ['id']; ?></td>
-      <td><?php echo $usuario ['nombre_usuario']; ?></td>
-      <td><?php echo $usuario ['descripcion']; ?></td>
-      <td><?php echo $usuario ['precio']; ?></td>
-      <td><?php echo $usuario ['stock']; ?></td>
-      <td><?php echo $usuario ['fecha_publicacion']; ?></td>
+      <td><?php echo $usuario ['nombre_completo']; ?></td>
+      <td><?php echo $usuario ['telefono']; ?></td>
+      <td><?php echo $usuario ['contrasena']; ?></td>
+      <td><?php echo $usuario ['email']; ?></td>
+      <td><?php echo $usuario ['fecha_registro']; ?></td>
+      <td><?php echo $usuario ['total_compras']; ?></td>
       <td>
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
           <a href="usuario.php?accion=actualizar&id=<?php echo $usuario ['id']; ?>" class="btn btn-warning">Actualizar</a>
