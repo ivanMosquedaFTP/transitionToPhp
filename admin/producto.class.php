@@ -1,15 +1,18 @@
 <?php
  require_once ('../sistema.class.php');
 
- class administrador extends sistema {
+ class producto extends sistema {
     function create ($data){
         $result = [];
         $insertar = [];
         $this -> conexion();
-        $sql="insert into administrador(nombre, contrasena) values(:nombre, :contrasena);";
+        $sql="insert into producto(nombre_producto, descripcion, precio, stock) values(:nombre_producto, :descripcion, :precio, :stock);";
         $insertar = $this->con->prepare($sql);
-        $insertar -> bindParam(':nombre', $data['nombre'], PDO::PARAM_STR);
-        $insertar -> bindParam(':contrasena', $data['contrasena'], PDO::PARAM_STR);
+        $insertar -> bindParam(':nombre_producto', $data['nombre_producto'], PDO::PARAM_STR);
+        $insertar -> bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
+        $precio = strval($data['precio']);
+        $insertar -> bindParam(':precio', $data['precio'], PDO::PARAM_STR);
+        $insertar -> bindParam(':stock', $data['stock'], PDO::PARAM_INT);
         $insertar -> execute();
         $result = $insertar -> rowCount();
         return $result;
@@ -19,10 +22,13 @@
         $this->conexion();
         $result = [];
         if (is_numeric($id)) {
-            $sql = 'update administrador set nombre=:nombre, contrasena=:contrasena where id=:id;';
+            $sql = 'update producto set nombre_producto=:nombre_producto=:nombre_producto, descripcion=:descripcion, precio=:precio, stock=:stock where id=:id;';
             $modificar=$this->con->prepare($sql);
-            $modificar->bindParam(':nombre',$data['nombre'], PDO::PARAM_STR);
-            $modificar->bindParam(':contrasena',$data['contrasena'], PDO::PARAM_STR);
+            $modificar->bindParam(':nombre_producto',$data['nombre_producto'], PDO::PARAM_STR);
+            $modificar->bindParam(':descripcion',$data['descripcion'], PDO::PARAM_STR);
+            $precio = strval($data['precio']);
+            $modificar->bindParam(':precio',$data['precio'], PDO::PARAM_STR);
+            $modificar->bindParam(':stock',$data['stock'], PDO::PARAM_INT);
             $modificar->bindParam(':id',$id, PDO::PARAM_INT);
             $modificar->execute();
             $result= $modificar->rowCount();
@@ -34,7 +40,7 @@
         $this -> conexion();
         $result = [];
         if (is_numeric($id)) {
-            $sql = "delete from administrador where id=:id;";
+            $sql = "delete from producto where id=:id;";
             $eliminar = $this->con->prepare($sql);
             $eliminar -> bindParam(':id', $id, PDO::PARAM_INT);
             $eliminar -> execute();
@@ -46,7 +52,7 @@
     function readOne ($id){
         $this->conexion();
         $result = [];
-        $consulta = 'select * from administrador where id=:id;';
+        $consulta = 'select * from producto where id=:id;';
         $sql = $this->con->prepare($consulta);
         $sql->bindParam(":id",$id,PDO::PARAM_INT);
         $sql -> execute();
@@ -58,7 +64,7 @@
     function readAll (){
         $this -> conexion();
         $result = [];
-        $consulta ='select * from administrador;';
+        $consulta ='select * from producto;';
         $sql = $this->con->prepare ($consulta); 
         $sql -> execute();
         $result = $sql -> fetchALL(PDO::FETCH_ASSOC);    
