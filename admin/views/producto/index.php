@@ -1,25 +1,31 @@
 <?php require('views/header.php')?>
-  <h1>Administradores</h1>
+  <h1>Productos</h1>
   <?php if (isset($mensaje)): $app -> alerta($tipo, $mensaje); endif;?>
-  <a href="administrador.php?accion=crear" class="btn btn-success">Nuevo</a>
+  <a href="producto.php?accion=crear" class="btn btn-success">Nuevo</a>
   <table class="table">
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Contraseña</th>
+      <th scope="col">Nombre del producto</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Fecha de publicación</th>
     </tr>
   </thead>
   <tbody>
-    <?php foreach($administradores as $administrador): ?>
+    <?php foreach($productos as $producto): ?>
     <tr>
-      <td><?php echo $administrador ['id']; ?></td>
-      <td><?php echo $administrador ['nombre']; ?></td>
-      <td><?php echo $administrador ['contrasena']; ?></td>
+      <td><?php echo $producto ['id']; ?></td>
+      <td><?php echo $producto ['nombre_producto']; ?></td>
+      <td><?php echo $producto ['descripcion']; ?></td>
+      <td><?php echo $producto ['precio']; ?></td>
+      <td><?php echo $producto ['stock']; ?></td>
+      <td><?php echo $producto ['fecha_publicacion']; ?></td>
       <td>
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-          <a href="administrador.php?accion=actualizar&id=<?php echo $administrador ['id']; ?>" class="btn btn-warning">Actualizar</a>
-          <a href="administrador.php?accion=eliminar&id=<?php echo $administrador ['id']; ?>" class="btn btn-danger">Eliminar</a>
+          <a href="producto.php?accion=actualizar&id=<?php echo $producto ['id']; ?>" class="btn btn-warning">Actualizar</a>
+          <a href="producto.php?accion=eliminar&id=<?php echo $producto ['id']; ?>" class="btn btn-danger">Eliminar</a>
         </div>
       </td>
     </tr>
