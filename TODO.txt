@@ -1,1 +1,0 @@
-fix the file references in every component of the footer for all views
