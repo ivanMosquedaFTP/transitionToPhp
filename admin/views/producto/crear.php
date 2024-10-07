@@ -27,11 +27,6 @@
             <input class="form-control" type="text" name="data[stock]" placeholder="Escribe aqui el stock del producto"  value="<?php if(isset($productos["stock"])):echo($productos['stock']);endif;?>"  id="stock"/>
         </div>
 
-        <div class="mb-3">
-            <label for="fecha_publicacion" class="form-label">Fecha de publicación del nuevo producto</label>
-            <input class="form-control" type="text" name="data[fecha_publicacion]" placeholder="Escribe aqui la fecha de publicación del producto"  value="<?php if(isset($productos["fecha_publicacion"])):echo($productos['fecha_publicacion']);endif;?>"  id="fecha_publicacion"/>
-        </div>
-
         <input type="submit" value="Guardar" name="data[enviar]" class="btn btn-primary w-100">
         </form>
     </div>

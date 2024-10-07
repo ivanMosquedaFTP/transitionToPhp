@@ -21,13 +21,13 @@ switch ($accion) {
             $tipo = "danger";
         }
 
-        $productoes = $app->readAll();
+        $productos = $app->readAll();
         include('views/producto/index.php');
         break;
     }
 
     case 'actualizar': {
-        $productoes = $app -> readOne($id); 
+        $productos = $app -> readOne($id); 
         include('views/producto/crear.php');
         break;
     }
@@ -42,7 +42,7 @@ switch ($accion) {
             $mensaje="No se ha actualizado";
             $tipo="danger";
         }
-        $productoes = $app->readAll();
+        $productos = $app->readAll();
         include('views/producto/index.php');
         break;
     }
@@ -60,13 +60,13 @@ switch ($accion) {
                 }
             }
         }
-        $productoes = $app->readAll();
+        $productos = $app->readAll();
         include('views/producto/index.php');
         break;
     }
 
     default: {
-        $productoes = $app->readAll();
+        $productos = $app->readAll();
         include 'views/producto/index.php';
         break;
     }
