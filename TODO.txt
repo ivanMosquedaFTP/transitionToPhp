@@ -1,1 +1,1 @@
-add header to all documents
+remove index references in all documents
