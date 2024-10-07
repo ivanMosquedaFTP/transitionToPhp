@@ -12,7 +12,7 @@
                   puedes contactarnos, mediante nuestro sitio web o mediante un correo electrónico a la siguiente
                   dirección
                   de correo: cualquiera3013@gmail.com</p>
-                <a href="index/contact.html" class="btn btn-danger">Contacto</a>
+                <a href="../index/contact.html" class="btn btn-danger">Contacto</a>
               </div>
             </div>
           </div>
@@ -22,7 +22,7 @@
                 <h5 class="card-title">Seguridad primero</h5>
                 <p class="card-text">Si nuestro sitio web no te inspira confianza, no te preocupes, puedes visitarnos
                   cuando quieras en nuestra tienda fisica.</p>
-                <a href="index/location.html" class="btn btn-danger">Ubicacion</a>
+                <a href="../index/location.html" class="btn btn-danger">Ubicacion</a>
               </div>
             </div>
           </div>
