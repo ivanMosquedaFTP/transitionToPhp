@@ -1,33 +1,29 @@
 <?php require('views/header.php')?>
-  <h1>Usuarios</h1>
+  <h1>Ventas</h1>
   <?php if (isset($mensaje)): $app -> alerta($tipo, $mensaje); endif;?>
-  <a href="usuario.php?accion=crear" class="btn btn-success">Nuevo</a>
+  <a href="venta.php?accion=crear" class="btn btn-success">Nueva</a>
   <table class="table">
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Nombre del usuario</th>
-      <th scope="col">Telefono</th>
-      <th scope="col">contrasena</th>
-      <th scope="col">email</th>
-      <th scope="col">Fecha de registro</th>
-      <th scope="col">Total de compras</th>
+      <th scope="col">Id del usuario</th>
+      <th scope="col">Id del producto</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Fecha de la venta</th>
     </tr>
   </thead>
   <tbody>
-    <?php foreach($usuarios as $usuario): ?>
+    <?php foreach($ventas as $venta): ?>
     <tr>
-      <td><?php echo $usuario ['id']; ?></td>
-      <td><?php echo $usuario ['nombre_completo']; ?></td>
-      <td><?php echo $usuario ['telefono']; ?></td>
-      <td><?php echo $usuario ['contrasena']; ?></td>
-      <td><?php echo $usuario ['email']; ?></td>
-      <td><?php echo $usuario ['fecha_registro']; ?></td>
-      <td><?php echo $usuario ['total_compras']; ?></td>
+      <td><?php echo $venta ['id']; ?></td>
+      <td><?php echo $venta ['usuario_id']; ?></td>
+      <td><?php echo $venta ['producto_id']; ?></td>
+      <td><?php echo $venta ['cantidad']; ?></td>
+      <td><?php echo $venta ['fecha_venta']; ?></td>
       <td>
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-          <a href="usuario.php?accion=actualizar&id=<?php echo $usuario ['id']; ?>" class="btn btn-warning">Actualizar</a>
-          <a href="usuario.php?accion=eliminar&id=<?php echo $usuario ['id']; ?>" class="btn btn-danger">Eliminar</a>
+          <a href="venta.php?accion=actualizar&id=<?php echo $venta ['id']; ?>" class="btn btn-warning">Actualizar</a>
+          <a href="venta.php?accion=eliminar&id=<?php echo $venta ['id']; ?>" class="btn btn-danger">Eliminar</a>
         </div>
       </td>
     </tr>
