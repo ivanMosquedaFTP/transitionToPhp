@@ -1,12 +1,16 @@
 <?php
+require_once ('venta.class.php');
 require_once ('usuario.class.php');
-$app = new usuario();
+require_once ('producto.class.php');
+$app = new venta();
+$appUsuarios = new usuario();
+$appProductos = new producto();
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
-        include 'views/usuario/crear.php';
+        include 'views/venta/crear.php';
         break;
     }
 
@@ -14,21 +18,23 @@ switch ($accion) {
         $data=$_POST['data'];
         $resultado = $app->create($data);
         if ($resultado) {
-            $mensaje = "Usuario dado de alta correctamente";
+            $mensaje = "Venta dada de alta correctamente";
             $tipo = "success";
         } else {
-            $mensaje = "El usuario no ha sido dado de alta";
+            $mensaje = "La venta no ha sido dado de alta";
             $tipo = "danger";
         }
 
-        $usuarios = $app->readAll();
-        include('views/usuario/index.php');
+        $ventas = $app->readAll();
+        include('views/venta/index.php');
         break;
     }
 
     case 'actualizar': {
-        $usuarios = $app -> readOne($id); 
-        include('views/usuario/crear.php');
+        $ventas = $app -> readOne($id); 
+        $usuarios = $appUsuarios -> readAll($id); 
+        $productos = $appProductos -> readAll($id); 
+        include('views/venta/crear.php');
         break;
     }
     
@@ -36,14 +42,14 @@ switch ($accion) {
         $data= $_POST['data'];
         $result=$app->update($id,$data);
         if($result){
-            $mensaje="El usuario se ha actualizado";
+            $mensaje="La venta se ha actualizado";
             $tipo="success";
         }else{
             $mensaje="No se ha actualizado";
             $tipo="danger";
         }
-        $usuarios = $app->readAll();
-        include('views/usuario/index.php');
+        $ventas = $app->readAll();
+        include('views/venta/index.php');
         break;
     }
 
@@ -52,22 +58,22 @@ switch ($accion) {
             if (is_numeric($id)) {
                 $resultado = $app -> delete($id);
                 if ($resultado) {
-                    $mensaje = "El usuario se eliminó correctamente";
+                    $mensaje = "La venta se eliminó correctamente";
                     $tipo = "success";
                 } else {
-                    $mensaje = "El usuario no se eliminó correctamente";
+                    $mensaje = "La venta no se eliminó correctamente";
                     $tipo = "danger";
                 }
             }
         }
-        $usuarios = $app->readAll();
-        include('views/usuario/index.php');
+        $ventas = $app->readAll();
+        include('views/venta/index.php');
         break;
     }
 
     default: {
-        $usuarios = $app->readAll();
-        include 'views/usuario/index.php';
+        $ventas = $app->readAll();
+        include 'views/venta/index.php';
         break;
     }
 }
