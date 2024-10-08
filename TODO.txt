@@ -1,1 +1,2 @@
 remove index references in all documents
+add image to producto table
