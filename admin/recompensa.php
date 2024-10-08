@@ -1,12 +1,12 @@
 <?php
-require_once ('producto.class.php');
-$app = new producto();
+require_once ('recompensa.class.php');
+$app = new recompensa();
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
-        include 'views/producto/crear.php';
+        include 'views/recompensa/crear.php';
         break;
     }
 
@@ -14,21 +14,21 @@ switch ($accion) {
         $data=$_POST['data'];
         $resultado = $app->create($data);
         if ($resultado) {
-            $mensaje = "producto dado de alta correctamente";
+            $mensaje = "recompensa dada de alta correctamente";
             $tipo = "success";
         } else {
-            $mensaje = "El producto no ha sido dado de alta";
+            $mensaje = "La recompensa no ha sido dada de alta";
             $tipo = "danger";
         }
 
-        $productos = $app->readAll();
-        include('views/producto/index.php');
+        $recompensas = $app->readAll();
+        include('views/recompensa/index.php');
         break;
     }
 
     case 'actualizar': {
-        $productos = $app -> readOne($id); 
-        include('views/producto/crear.php');
+        $recompensas = $app -> readOne($id); 
+        include('views/recompensa/crear.php');
         break;
     }
     
@@ -36,14 +36,14 @@ switch ($accion) {
         $data= $_POST['data'];
         $result=$app->update($id,$data);
         if($result){
-            $mensaje="El producto se ha actualizado";
+            $mensaje="La recompensa se ha actualizado";
             $tipo="success";
         }else{
             $mensaje="No se ha actualizado";
             $tipo="danger";
         }
-        $productos = $app->readAll();
-        include('views/producto/index.php');
+        $recompensas = $app->readAll();
+        include('views/recompensa/index.php');
         break;
     }
 
@@ -52,22 +52,22 @@ switch ($accion) {
             if (is_numeric($id)) {
                 $resultado = $app -> delete($id);
                 if ($resultado) {
-                    $mensaje = "El producto se eliminó correctamente";
+                    $mensaje = "La recompensa se eliminó correctamente";
                     $tipo = "success";
                 } else {
-                    $mensaje = "El producto no se eliminó correctamente";
+                    $mensaje = "La recompensa no se eliminó correctamente";
                     $tipo = "danger";
                 }
             }
         }
-        $productos = $app->readAll();
-        include('views/producto/index.php');
+        $recompensas = $app->readAll();
+        include('views/recompensa/index.php');
         break;
     }
 
     default: {
-        $productos = $app->readAll();
-        include 'views/producto/index.php';
+        $recompensas = $app->readAll();
+        include 'views/recompensa/index.php';
         break;
     }
 }
