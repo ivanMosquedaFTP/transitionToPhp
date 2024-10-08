@@ -1,30 +1,25 @@
 <?php require('views/header.php'); ?>
 <center>
-    <h1><?php if($accion=="crear"):echo('Nuevo');else: echo ('Modificar');endif; ?> producto</h1>
+    <h1><?php if($accion=="crear"):echo('Nueva');else: echo ('Modificar');endif; ?> recompensa</h1>
 </center>
 
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <form method="post" action="producto.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
+        <form method="post" action="recompensa.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
-            <label for="nombre_producto" class="form-label">Nombre del producto</label>
-            <input class="form-control" type="text" name="data[nombre_producto]" placeholder="Escribe aqui el nombre del producto" value="<?php if(isset($productos["nombre_producto"])):echo($productos['nombre_producto']);endif;?>" id="nombre_producto"/>
+            <label for="usuario_id" class="form-label">Id del usuario</label>
+            <input class="form-control" type="text" name="data[usuario_id]" placeholder="Escribe aqui el id del usuario" value="<?php if(isset($recompensas["usuario_id"])):echo($recompensas['usuario_id']);endif;?>" id="usuario_id"/>
         </div>
 
         <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción del nuevo producto</label>
-            <input class="form-control" type="text" name="data[descripcion]" placeholder="Escribe aqui la descripción del producto"  value="<?php if(isset($productos["descripcion"])):echo($productos['descripcion']);endif;?>"  id="descripcion"/>
+            <label for="descripcion" class="form-label">Descripción de la nueva recompensa</label>
+            <input class="form-control" type="text" name="data[descripcion]" placeholder="Escribe aqui la descripción de la recompensa"  value="<?php if(isset($recompensas["descripcion"])):echo($recompensas['descripcion']);endif;?>"  id="descripcion"/>
         </div>
 
         <div class="mb-3">
-            <label for="precio" class="form-label">Precio del nuevo producto</label>
-            <input class="form-control" type="text" name="data[precio]" placeholder="Escribe aqui el precio del producto"  value="<?php if(isset($productos["precio"])):echo($productos['precio']);endif;?>"  id="precio"/>
-        </div>
-
-        <div class="mb-3">
-            <label for="stock" class="form-label">Stock del nuevo producto</label>
-            <input class="form-control" type="text" name="data[stock]" placeholder="Escribe aqui el stock del producto"  value="<?php if(isset($productos["stock"])):echo($productos['stock']);endif;?>"  id="stock"/>
+            <label for="fecha_otorgada" class="form-label">Fecha otorgada de la recompensa</label>
+            <input class="form-control" type="text" name="data[fecha_otorgada]" placeholder="Escribe aqui la fecha de otorgacion de la recompensa"  value="<?php if(isset($recompensas["fecha_otorgada"])):echo($recompensas['fecha_otorgada']);endif;?>"  id="fecha_otorgada"/>
         </div>
 
         <input type="submit" value="Guardar" name="data[enviar]" class="btn btn-primary w-100">
