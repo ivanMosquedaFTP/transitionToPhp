@@ -1,18 +1,16 @@
 <?php
  require_once ('../sistema.class.php');
 
- class usuario extends sistema {
+ class venta extends sistema {
     function create ($data){
         $result = [];
         $insertar = [];
         $this -> conexion();
-        $sql="insert into usuario(nombre_completo, telefono, contrasena, email, total_compras) values(:nombre_completo, :telefono, :contrasena, :email, :total_compras);";
+        $sql="insert into venta(usuario_id, producto_id, cantidad) values(:usuario_id, :producto_id, :cantidad);";
         $insertar = $this->con->prepare($sql);
-        $insertar -> bindParam(':nombre_completo', $data['nombre_completo'], PDO::PARAM_STR);
-        $insertar -> bindParam(':telefono', $data['telefono'], PDO::PARAM_STR);
-        $insertar -> bindParam(':contrasena', $data['contrasena'], PDO::PARAM_STR);
-        $insertar -> bindParam(':email', $data['email'], PDO::PARAM_STR);
-        $insertar -> bindParam(':total_compras', $data['total_compras'], PDO::PARAM_INT);
+        $insertar -> bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_INT);
+        $insertar -> bindParam(':producto_id', $data['producto_id'], PDO::PARAM_INT);
+        $insertar -> bindParam(':cantidad', $data['cantidad'], PDO::PARAM_INT);
         $insertar -> execute();
         $result = $insertar -> rowCount();
         return $result;
@@ -22,13 +20,11 @@
         $this->conexion();
         $result = [];
         if (is_numeric($id)) {
-            $sql = 'update usuario set nombre_completo=:nombre_completo, telefono=:telefono, contrasena=:contrasena, email=:email, total_compras=:total_compras where id=:id;';
+            $sql = 'update venta set usuario_id=:usuario_id, producto_id=:producto_id, cantidad=:cantidad where id=:id;';
             $modificar=$this->con->prepare($sql);
-            $modificar->bindParam(':nombre_completo',$data['nombre_completo'], PDO::PARAM_STR);
-            $modificar->bindParam(':telefono',$data['telefono'], PDO::PARAM_STR);
-            $modificar->bindParam(':contrasena',$data['contrasena'], PDO::PARAM_STR);
-            $modificar->bindParam(':email',$data['email'], PDO::PARAM_STR);
-            $modificar->bindParam(':total_compras',$data['total_compras'], PDO::PARAM_INT);
+            $modificar->bindParam(':usuario_id',$data['usuario_id'], PDO::PARAM_STR);
+            $modificar->bindParam(':producto_id',$data['producto_id'], PDO::PARAM_STR);
+            $modificar->bindParam(':cantidad',$data['cantidad'], PDO::PARAM_STR);
             $modificar->bindParam(':id',$id, PDO::PARAM_INT);
             $modificar->execute();
             $result= $modificar->rowCount();
@@ -40,7 +36,7 @@
         $this -> conexion();
         $result = [];
         if (is_numeric($id)) {
-            $sql = "delete from usuario where id=:id;";
+            $sql = "delete from venta where id=:id;";
             $eliminar = $this->con->prepare($sql);
             $eliminar -> bindParam(':id', $id, PDO::PARAM_INT);
             $eliminar -> execute();
@@ -52,7 +48,7 @@
     function readOne ($id){
         $this->conexion();
         $result = [];
-        $consulta = 'select * from usuario where id=:id;';
+        $consulta = 'select * from venta where id=:id;';
         $sql = $this->con->prepare($consulta);
         $sql->bindParam(":id",$id,PDO::PARAM_INT);
         $sql -> execute();
@@ -64,7 +60,7 @@
     function readAll (){
         $this -> conexion();
         $result = [];
-        $consulta ='select * from usuario;';
+        $consulta ='select * from venta;';
         $sql = $this->con->prepare ($consulta); 
         $sql -> execute();
         $result = $sql -> fetchALL(PDO::FETCH_ASSOC);    
