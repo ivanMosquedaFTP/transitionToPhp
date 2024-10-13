@@ -15,3 +15,11 @@ CREATE TABLE rol_permiso(
     FOREIGN KEY (id_rol) REFERENCES rol(id_rol), 
     FOREIGN KEY (id_permiso) REFERENCES permiso(id_permiso)
 );
+
+CREATE TABLE usuario_rol(
+    id_usuario INT NOT NULL, 
+    id_rol INT NOT NULL, 
+    PRIMARY KEY (id_usuario, id_rol), 
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id), 
+    FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
+);
