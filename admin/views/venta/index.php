@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Id del usuario</th>
-      <th scope="col">Id del producto</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Producto</th>
       <th scope="col">Cantidad</th>
       <th scope="col">Fecha de la venta</th>
     </tr>
