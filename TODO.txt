@@ -1,3 +1,3 @@
 remove index references in all documents
 add image to producto table
-fix usuario crud and recompensa crud
+fix venta crud and recompensa crud
