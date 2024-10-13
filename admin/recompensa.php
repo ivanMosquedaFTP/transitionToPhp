@@ -1,11 +1,14 @@
 <?php
 require_once ('recompensa.class.php');
+require_once ('usuario.class.php');
 $app = new recompensa();
+$appUsuario = new usuario();
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
+        $usuarios = $appUsuario -> readAll();
         include 'views/recompensa/crear.php';
         break;
     }
@@ -28,6 +31,7 @@ switch ($accion) {
 
     case 'actualizar': {
         $recompensas = $app -> readOne($id); 
+        $usuarios = $appUsuario -> readAll();
         include('views/recompensa/crear.php');
         break;
     }
