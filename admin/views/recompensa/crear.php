@@ -8,7 +8,7 @@
     <div class="col-md-10">
         <form method="post" action="recompensa.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
-            <label for="usuario_id" class="form-label">Id del usuario</label>
+            <label for="usuario_id" class="form-label">Usuario</label>
             <select name="data[id_usuario]" id="" class="form-select">
               <?php foreach($usuarios as $usuario):?> 
                 <?php
