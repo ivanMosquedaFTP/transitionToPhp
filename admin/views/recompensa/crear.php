@@ -27,11 +27,6 @@
             <input class="form-control" type="text" name="data[descripcion]" placeholder="Escribe aqui la descripción de la recompensa"  value="<?php if(isset($recompensas["descripcion"])):echo($recompensas['descripcion']);endif;?>"  id="descripcion"/>
         </div>
 
-        <div class="mb-3">
-            <label for="fecha_otorgada" class="form-label">Fecha otorgada de la recompensa</label>
-            <input class="form-control" type="text" name="data[fecha_otorgada]" placeholder="Escribe aqui la fecha de otorgacion de la recompensa"  value="<?php if(isset($recompensas["fecha_otorgada"])):echo($recompensas['fecha_otorgada']);endif;?>"  id="fecha_otorgada"/>
-        </div>
-
         <input type="submit" value="Guardar" name="data[enviar]" class="btn btn-primary w-100">
         </form>
     </div>
