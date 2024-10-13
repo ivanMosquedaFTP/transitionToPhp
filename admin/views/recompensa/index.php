@@ -15,11 +15,7 @@
     <?php foreach($recompensas as $recompensa): ?>
       <tr>
       <td><?php echo $recompensa ['id']; ?></td>
-    <?php endforeach; ?>
-    <?php foreach($usuarios as $usuario): ?>
-      <td><?php echo $usuario ['nombre_completo']; ?></td>
-    <?php endforeach; ?>
-    <?php foreach($recompensas as $recompensa): ?>
+      <td><?php echo $recompensa ['nombre_completo']; ?></td>
       <td><?php echo $recompensa ['descripcion']; ?></td>
       <td><?php echo $recompensa ['fecha_otorgada']; ?></td>
     <?php endforeach; ?>
