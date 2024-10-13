@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Id del usuario</th>
+      <th scope="col">Usuario</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Fecha otorgada</th>
     </tr>

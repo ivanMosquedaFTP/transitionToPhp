@@ -60,7 +60,7 @@
     function readAll (){
         $this -> conexion();
         $result = [];
-        $consulta ='select * from recompensa;';
+        $consulta ='select r.*, u.nombre_completo from recompensa r inner join usuario u on r.usuario_id = u.id;';
         $sql = $this->con->prepare ($consulta); 
         $sql -> execute();
         $result = $sql -> fetchALL(PDO::FETCH_ASSOC);
