@@ -9,7 +9,17 @@
         <form method="post" action="recompensa.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
             <label for="usuario_id" class="form-label">Id del usuario</label>
-            <input class="form-control" type="text" name="data[usuario_id]" placeholder="Escribe aqui el id del usuario" value="<?php if(isset($recompensas["usuario_id"])):echo($recompensas['usuario_id']);endif;?>" id="usuario_id"/>
+            <select name="data[id_usuario]" id="" class="form-select">
+              <?php foreach($usuarios as $usuario):?> 
+                <?php
+                  $selected = "";
+                   if ($recompensas['id_usuario'] == $usuario['id']) {
+                       $selected = "selected";
+                   }
+                ?>
+                <option value="<?php echo($usuario['id']);?>" <?php echo($selected);?>><?php echo($usuario['nombre_completo']);?></option>
+                <?php endforeach;?>
+           </select>
         </div>
 
         <div class="mb-3">
