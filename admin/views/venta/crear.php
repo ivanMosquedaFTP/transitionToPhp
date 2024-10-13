@@ -8,13 +8,22 @@
     <div class="col-md-10">
         <form method="post" action="venta.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
-            <label for="usuario_id" class="form-label">Id del usuario</label>
-            <input class="form-control" type="text" name="data[usuario_id]" placeholder="Escribe aqui el id del usuario" value="<?php if(isset($ventas["usuario_id"])):echo($ventas['usuario_id']);endif;?>" id="usuario_id"/>
+            <label for="usuario_id" class="form-label">Usuario</label>
+            <select name="data[producto_id]" id="" class="form-select">
+              <?php foreach($productos as $producto):?> 
+                <?php
+                  $selected = "";
+                   if ($ventas['producto_id'] == $producto['id']) {
+                       $selected = "selected";
+                   }
+                ?>
+                <option value="<?php echo($producto['id']);?>" <?php echo($selected);?>><?php echo($producto['nombre_producto']);?></option>
+                <?php endforeach;?>
+           </select>
         </div>
 
         <div class="mb-3">
-            <label for="producto_id" class="form-label">Id del producto de la venta</label>
-            <input class="form-control" type="text" name="data[producto_id]" placeholder="Escribe aqui el id del producto del venta"  value="<?php if(isset($ventas["producto_id"])):echo($ventas['producto_id']);endif;?>"  id="producto_id"/>
+            <label for="producto_id" class="form-label">Producto</label>
         </div>
 
         <div class="mb-3">

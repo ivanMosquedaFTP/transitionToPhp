@@ -17,7 +17,7 @@
     <tr>
       <td><?php echo $venta ['id']; ?></td>
       <td><?php echo $venta ['nombre_completo']; ?></td>
-      <td><?php echo $venta ['producto_id']; ?></td>
+      <td><?php echo $venta ['nombre_producto']; ?></td>
       <td><?php echo $venta ['cantidad']; ?></td>
       <td><?php echo $venta ['fecha_venta']; ?></td>
       <td>
