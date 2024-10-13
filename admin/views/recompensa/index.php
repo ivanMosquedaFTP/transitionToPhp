@@ -18,7 +18,6 @@
       <td><?php echo $recompensa ['nombre_completo']; ?></td>
       <td><?php echo $recompensa ['descripcion']; ?></td>
       <td><?php echo $recompensa ['fecha_otorgada']; ?></td>
-    <?php endforeach; ?>
       <td>
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
           <a href="recompensa.php?accion=actualizar&id=<?php echo $recompensa ['id']; ?>" class="btn btn-warning">Actualizar</a>
@@ -26,6 +25,7 @@
         </div>
       </td>
     </tr>
+    <?php endforeach; ?>
   </tbody>
 </table>
 
