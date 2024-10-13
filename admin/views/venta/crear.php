@@ -18,7 +18,7 @@
                        $selected = "selected";
                    }
                 ?>
-                <option value="<?php echo($usuario['id']);?>" <?php echo($selected);?>><?php echo($usuario['nombre_producto']);?></option>
+                <option value="<?php echo($usuario['id']);?>" <?php echo($selected);?>><?php echo($usuario['nombre_completo']);?></option>
                 <?php endforeach;?>
            </select>
         </div>
