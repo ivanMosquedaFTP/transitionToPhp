@@ -16,7 +16,7 @@
     <?php foreach($ventas as $venta): ?>
     <tr>
       <td><?php echo $venta ['id']; ?></td>
-      <td><?php echo $venta ['usuario_id']; ?></td>
+      <td><?php echo $venta ['nombre_completo']; ?></td>
       <td><?php echo $venta ['producto_id']; ?></td>
       <td><?php echo $venta ['cantidad']; ?></td>
       <td><?php echo $venta ['fecha_venta']; ?></td>
