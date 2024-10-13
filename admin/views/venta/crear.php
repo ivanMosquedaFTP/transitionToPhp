@@ -8,7 +8,23 @@
     <div class="col-md-10">
         <form method="post" action="venta.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
+            /*TODO:fix the reference*/
             <label for="usuario_id" class="form-label">Usuario</label>
+            <select name="data[usuario_id]" id="" class="form-select">
+              <?php foreach($usuarios as $usuario):?> 
+                <?php
+                  $selected = "";
+                   if ($ventas['usuario_id'] == $usuario['id']) {
+                       $selected = "selected";
+                   }
+                ?>
+                <option value="<?php echo($usuario['id']);?>" <?php echo($selected);?>><?php echo($usuario['nombre_producto']);?></option>
+                <?php endforeach;?>
+           </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="producto_id" class="form-label">Producto</label>
             <select name="data[producto_id]" id="" class="form-select">
               <?php foreach($productos as $producto):?> 
                 <?php
@@ -20,10 +36,6 @@
                 <option value="<?php echo($producto['id']);?>" <?php echo($selected);?>><?php echo($producto['nombre_producto']);?></option>
                 <?php endforeach;?>
            </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="producto_id" class="form-label">Producto</label>
         </div>
 
         <div class="mb-3">
