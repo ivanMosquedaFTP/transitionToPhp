@@ -8,7 +8,7 @@
     <div class="col-md-10">
         <form method="post" action="venta.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
-            /*TODO:fix the reference*/
+            //TODO:fix the reference
             <label for="usuario_id" class="form-label">Usuario</label>
             <select name="data[usuario_id]" id="" class="form-select">
               <?php foreach($usuarios as $usuario):?> 
