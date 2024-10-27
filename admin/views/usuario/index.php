@@ -8,7 +8,6 @@
       <th scope="col">Id</th>
       <th scope="col">Nombre del usuario</th>
       <th scope="col">Telefono</th>
-      <th scope="col">contrasena</th>
       <th scope="col">email</th>
       <th scope="col">Fecha de registro</th>
       <th scope="col">Total de compras</th>
@@ -20,7 +19,6 @@
       <td><?php echo $usuario ['id']; ?></td>
       <td><?php echo $usuario ['nombre_completo']; ?></td>
       <td><?php echo $usuario ['telefono']; ?></td>
-      <td><?php echo $usuario ['contrasena']; ?></td>
       <td><?php echo $usuario ['email']; ?></td>
       <td><?php echo $usuario ['fecha_registro']; ?></td>
       <td><?php echo $usuario ['total_compras']; ?></td>
