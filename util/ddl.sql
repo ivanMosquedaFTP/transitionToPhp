@@ -2,6 +2,14 @@
 insert into usuario(nombre_completo, telefono, contrasena, email) values('administrador', '1234', '1234', 'admin@admin.com');
 insert into usuario(nombre_completo, telefono, contrasena, email) values('pruebas', '1234', '1234', 'pruebas@pruebas.com');
 
+select * from usuario;
+alter table usuario modify column contrasena varchar(100);
+desc usuario;
+update usuario set contrasena = md5('1234') where id = 1;
+update usuario set contrasena = md5('1234') where id = 2;
+
+desc usuario_rol;
+
 -- for permiso table
 INSERT INTO permiso (permiso) VALUES ('index'), ('Ver productos'), ('Nuevo producto'), ('Modificar producto'), ('Eliminar producto'), ('Agregar un usuario'), ('Modificar un usuario'), ('Eliminar un usuario');
 
@@ -38,7 +46,12 @@ insert into usuario_rol(id_usuario, id_rol) values(2, 1);
 select * from rol_permiso;
 select * from usuario_rol;
 
+-- query that returns every grant for a user
 select p.permiso, u.email from permiso p inner join rol_permiso rp on p.id_permiso = rp.id_permiso
 inner join rol r on r.id_rol = rp.id_rol
 inner join usuario_rol ur on ur.id_rol = r.id_rol
 inner join usuario u on u.id = ur.id_usuario;
+
+-- query that returns rol for a user
+select r.rol, u.email from rol r inner join usuario_rol ur on r.id_rol = ur.id_rol
+inner join usuario u on ur.id_usuario = u.id;
