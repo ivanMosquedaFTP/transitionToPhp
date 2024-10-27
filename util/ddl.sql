@@ -1,14 +1,6 @@
 -- make sure to first insert into table usuario the following
-insert into usuario(nombre_completo, telefono, contrasena, email) values('administrador', '1234', '1234', 'admin@admin.com');
-insert into usuario(nombre_completo, telefono, contrasena, email) values('pruebas', '1234', '1234', 'pruebas@pruebas.com');
-
-select * from usuario;
-alter table usuario modify column contrasena varchar(100);
-desc usuario;
-update usuario set contrasena = md5('1234') where id = 1;
-update usuario set contrasena = md5('1234') where id = 2;
-
-desc usuario_rol;
+insert into usuario(nombre_completo, telefono, contrasena, email) values('administrador', '1234', md5('1234'), 'admin@admin.com');
+insert into usuario(nombre_completo, telefono, contrasena, email) values('pruebas', '1234', md5('1234'), 'pruebas@pruebas.com');
 
 -- for permiso table
 INSERT INTO permiso (permiso) VALUES ('index'), ('Ver productos'), ('Nuevo producto'), ('Modificar producto'), ('Eliminar producto'), ('Agregar un usuario'), ('Modificar un usuario'), ('Eliminar un usuario');
