@@ -12,7 +12,7 @@
             <form method="post" action="login.php?accion=login">
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                    <input type="email" name="data[correo]" id="form2Example1" class="form-control" />
+                    <input type="email" name="data[email]" id="form2Example1" class="form-control" />
                     <label class="form-label" for="form2Example1">Correo electrónico</label>
                 </div>
 

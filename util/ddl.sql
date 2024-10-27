@@ -1,3 +1,44 @@
 -- make sure to first insert into table usuario the following
 insert into usuario(nombre_completo, telefono, contrasena, email) values('administrador', '1234', '1234', 'admin@admin.com');
 insert into usuario(nombre_completo, telefono, contrasena, email) values('pruebas', '1234', '1234', 'pruebas@pruebas.com');
+
+-- for permiso table
+INSERT INTO permiso (permiso) VALUES ('index'), ('Ver productos'), ('Nuevo producto'), ('Modificar producto'), ('Eliminar producto'), ('Agregar un usuario'), ('Modificar un usuario'), ('Eliminar un usuario');
+
+-- for rol table
+insert into rol(rol) values ('cliente'), ('administrador');
+
+-- for table rol_permiso
+select * from rol;
+select * from permiso;
+
+-- giving cliente permissions to see products and index
+insert into rol_permiso(id_rol, id_permiso) values(1, 1);
+insert into rol_permiso(id_rol, id_permiso) values(1, 2);
+
+-- giving administrador permissions to CRUD for products and users
+insert into rol_permiso(id_rol, id_permiso) values(2, 1);
+insert into rol_permiso(id_rol, id_permiso) values(2, 2);
+insert into rol_permiso(id_rol, id_permiso) values(2, 3);
+insert into rol_permiso(id_rol, id_permiso) values(2, 4);
+insert into rol_permiso(id_rol, id_permiso) values(2, 5);
+insert into rol_permiso(id_rol, id_permiso) values(2, 6);
+insert into rol_permiso(id_rol, id_permiso) values(2, 7);
+insert into rol_permiso(id_rol, id_permiso) values(2, 8);
+
+-- assigning roles to usuarios
+select * from usuario;
+select * from rol;
+-- giving administrador its role
+insert into usuario_rol(id_usuario, id_rol) values(1, 2);
+
+-- giving cliente its role
+insert into usuario_rol(id_usuario, id_rol) values(2, 1);
+
+select * from rol_permiso;
+select * from usuario_rol;
+
+select p.permiso, u.email from permiso p inner join rol_permiso rp on p.id_permiso = rp.id_permiso
+inner join rol r on r.id_rol = rp.id_rol
+inner join usuario_rol ur on ur.id_rol = r.id_rol
+inner join usuario u on u.id = ur.id_usuario;

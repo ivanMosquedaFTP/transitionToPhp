@@ -6,9 +6,9 @@
 
   switch ($accion) {
     case 'login': {
-      $correo = $_POST['data']['correo'];
+      $email = $_POST['data']['email'];
       $contrasena = $_POST['data']['contrasena'];
-      if($app -> login($correo, $contrasena)) {
+      if($app -> login($email, $contrasena)) {
         $mensaje = "Bienvenido al sistema";
         $tipo = "success";
         $app -> checkRole('administrador');
@@ -16,7 +16,7 @@
         $app -> alerta($tipo, $mensaje);
         //TODO:plantillas personalizadas de Bienvenida
       } else {
-        $mensaje = "Correo o contrasena equivocados, <a href='login.php'>[presione aqui para volver a intentar]</a>";
+        $mensaje = "email o contrasena equivocados, <a href='login.php'>[presione aqui para volver a intentar]</a>";
         $tipo = "danger";
         require_once('views/header.php');
         $app -> alerta($tipo, $mensaje);
