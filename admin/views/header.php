@@ -51,7 +51,7 @@
               </ul>
             </li>
           </ul>
-          <a class="whitedOut" href="../index/login.html">Iniciar sesion</a>
+          <a class="whitedOut" href="login.php">Iniciar sesion</a>
         </div>
       </div>
     </nav>
