@@ -2,3 +2,4 @@ remove index references in all documents
 add image to producto table
 fix venta crud and recompensa crud
 drop administrador table
+secure endpoints validating its role with $app -> checkRole('administrador');
