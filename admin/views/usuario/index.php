@@ -1,4 +1,4 @@
-<?php require('views/header.php')?>
+<?php require('views/header/headerAdministrador.php');?>
   <h1>Usuarios</h1>
   <?php if (isset($mensaje)): $app -> alerta($tipo, $mensaje); endif;?>
   <a href="usuario.php?accion=crear" class="btn btn-success">Nuevo</a>
