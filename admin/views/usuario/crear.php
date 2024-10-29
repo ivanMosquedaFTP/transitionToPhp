@@ -1,4 +1,4 @@
-<?php require('views/header.php'); ?>
+<?php require('views/header/headerAdministrador.php'); ?>
 <center>
     <h1><?php if($accion=="crear"):echo('Nuevo');else: echo ('Modificar');endif; ?> usuario</h1>
 </center>
@@ -31,6 +31,15 @@
             <label for="total_compras" class="form-label">Total de compras del nuevo usuario</label>
             <input class="form-control" type="text" name="data[total_compras]" placeholder="Escribe aqui el total de las compras del usuario"  value="<?php if(isset($usuarios["total_compras"])):echo($usuarios['total_compras']);endif;?>"  id="email"/>
         </div>
+
+        <?php foreach($roles as $rol): ?>
+          <div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="rol[<?php echo($rol['id_rol']);?>]">
+              <label class="form-check-label" for="flexSwitchCheckChecked"><?php echo($rol['rol']);?></label>
+            </div>
+          </div>
+        <?php endforeach;?>
 
         <input type="submit" value="Guardar" name="data[enviar]" class="btn btn-primary w-100">
         </form>

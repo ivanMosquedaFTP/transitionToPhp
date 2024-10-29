@@ -1,11 +1,17 @@
 <?php
 require_once ('usuario.class.php');
+include ('rol.class.php');
+
 $app = new usuario();
+$appRole = new rol();
+$app -> checkRole('administrador');
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
+        $roles = $appRole -> readAll();
+
         include 'views/usuario/crear.php';
         break;
     }
@@ -28,6 +34,7 @@ switch ($accion) {
 
     case 'actualizar': {
         $usuarios = $app -> readOne($id); 
+        $roles = $appRole -> readAll();
         include('views/usuario/crear.php');
         break;
     }
