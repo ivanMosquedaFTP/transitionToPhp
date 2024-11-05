@@ -90,9 +90,34 @@
       $this -> con -> beginTransaction();
 
       try {
-        $sql = "insert into permiso(permiso) values(':permiso');";
+        $sql = "insert into rol_permiso(id_rol, id_permiso) values(':id_rol, :id_permiso');";
         $insertar = $this->con->prepare($sql);
-        $insertar ->bindParam(":permiso", $data['permiso'], PDO::PARAM_STR);
+        $insertar ->bindParam(":id_rol", $data['id_rol'], PDO::PARAM_INT);
+        $insertar ->bindParam(":id_permiso", $data['id_permiso'], PDO::PARAM_INT);
+        $insertar -> execute();
+
+        $this -> con->commit();
+        return $insertar -> rowCount();
+      } catch (Exception $e) {
+        $this -> con -> rollBack();
+        echo 'error: '. $e->getMessage();
+      }
+
+      return false;
+    }
+  }
+
+  function enrole($data) {
+    if (!is_null($data)) {
+      $insertar = [];
+
+      $this -> con -> beginTransaction();
+
+      try {
+        $sql = "insert into rol_permiso(id_rol, id_permiso) values(':id_rol, :id_permiso');";
+        $insertar = $this->con->prepare($sql);
+        $insertar ->bindParam(":id_rol", $data['id_rol'], PDO::PARAM_INT);
+        $insertar ->bindParam(":id_permiso", $data['id_permiso'], PDO::PARAM_INT);
         $insertar -> execute();
 
         $this -> con->commit();
