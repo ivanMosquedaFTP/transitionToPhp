@@ -114,10 +114,10 @@
       $this -> con -> beginTransaction();
 
       try {
-        $sql = "insert into rol_permiso(id_rol, id_permiso) values(':id_rol, :id_permiso');";
+        $sql = "insert into usuario_rol(id_usuario, id_rol) values(':id_usuario, :id_rol');";
         $insertar = $this->con->prepare($sql);
+        $insertar ->bindParam(":id_usuario", $data['id_usuario'], PDO::PARAM_INT);
         $insertar ->bindParam(":id_rol", $data['id_rol'], PDO::PARAM_INT);
-        $insertar ->bindParam(":id_permiso", $data['id_permiso'], PDO::PARAM_INT);
         $insertar -> execute();
 
         $this -> con->commit();
