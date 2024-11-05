@@ -56,58 +56,74 @@
   }
 
   function update ($id, $data){
-    $this->conexion();
-    $rol = $data['rol'];
-    $data = $data['data'];
-    $this -> con -> beginTransaction();
-    try {
-      $sql = 'update usuario set nombre_completo = :nombre_completo, telefono = :telefono, contrasena = md5(:contrasena), email = :email, total_compras = :total_compras where id = :id;';
-      $modificar=$this->con->prepare($sql);
-      $modificar->bindParam(':nombre_completo',$data['nombre_completo'], PDO::PARAM_STR);
-      $modificar->bindParam(':telefono',$data['telefono'], PDO::PARAM_STR);
-      $modificar->bindParam(':contrasena',$data['contrasena'], PDO::PARAM_STR);
-      $modificar->bindParam(':email',$data['email'], PDO::PARAM_STR);
-      $modificar->bindParam(':total_compras',$data['total_compras'], PDO::PARAM_INT);
-      $modificar->bindParam(':id',$id, PDO::PARAM_INT);
-      $modificar->execute();
+    if (!is_null($id) && !is_null($data) && is_numeric($id)) {
+      $this->conexion();
+      $rol = $data['rol'];
+      $data = $data['data'];
+      $this -> con -> beginTransaction();
+      try {
+        $sql = 'update usuario set nombre_completo = :nombre_completo, telefono = :telefono, contrasena = md5(:contrasena), email = :email, total_compras = :total_compras where id = :id;';
+        $modificar=$this->con->prepare($sql);
+        $modificar->bindParam(':nombre_completo',$data['nombre_completo'], PDO::PARAM_STR);
+        $modificar->bindParam(':telefono',$data['telefono'], PDO::PARAM_STR);
+        $modificar->bindParam(':contrasena',$data['contrasena'], PDO::PARAM_STR);
+        $modificar->bindParam(':email',$data['email'], PDO::PARAM_STR);
+        $modificar->bindParam(':total_compras',$data['total_compras'], PDO::PARAM_INT);
+        $modificar->bindParam(':id',$id, PDO::PARAM_INT);
+        $modificar->execute();
 
-      $sql = "delete from usuario_rol where id_usuario = :id;";
-      $borrar_rol = $this -> con -> prepare($sql);
-      $borrar_rol -> bindParam(':id', $id, PDO::PARAM_INT);
-      $borrar_rol -> execute();
+        $sql = "delete from usuario_rol where id_usuario = :id;";
+        $borrar_rol = $this -> con -> prepare($sql);
+        $borrar_rol -> bindParam(':id', $id, PDO::PARAM_INT);
+        $borrar_rol -> execute();
 
-      if (!is_null($id)) {
-        foreach($rol as $r => $k) {
-          $sql = "insert into usuario_rol(id_usuario, id_rol) values(:id_usuario, :id_rol);";
-          $insertar_rol = $this->con->prepare($sql);
-          $insertar_rol -> bindParam(':id_usuario', $id, PDO::PARAM_INT);
-          $insertar_rol -> bindParam(':id_rol', $r, PDO::PARAM_INT);
-          $insertar_rol -> execute();
+        if (!is_null($id)) {
+          foreach($rol as $r => $k) {
+            $sql = "insert into usuario_rol(id_usuario, id_rol) values(:id_usuario, :id_rol);";
+            $insertar_rol = $this->con->prepare($sql);
+            $insertar_rol -> bindParam(':id_usuario', $id, PDO::PARAM_INT);
+            $insertar_rol -> bindParam(':id_rol', $r, PDO::PARAM_INT);
+            $insertar_rol -> execute();
+          }
+
+          $this -> con ->commit();
+          return $insertar_rol -> rowCount();
         }
-
-        $this -> con ->commit();
-        return $insertar_rol -> rowCount();
+      } catch (Exception $e) {
+        $this -> con -> rollback();
+        echo $e -> getMessage();
       }
-    } catch (Exception $e) {
-      $this -> con -> rollback();
-      echo $e -> getMessage();
     }
 
     return false;
   }
 
-    function delete ($id){
-        $this -> conexion();
-        $result = [];
-        if (is_numeric($id)) {
-            $sql = "delete from usuario where id=:id;";
-            $eliminar = $this->con->prepare($sql);
-            $eliminar -> bindParam(':id', $id, PDO::PARAM_INT);
-            $eliminar -> execute();
-            $result = $eliminar -> rowCount();
-        }
-        return $result;
+  function delete ($id){
+    $this -> conexion();
+    $this -> con -> beginTransaction();
+    $result = [];
+    if (!is_null($id) && is_numeric($id)) {
+      try {
+        $sql = 'delete from usuario_rol where id_usuario = :id_usuario;';
+        $deleteRoles = $this -> con -> prepare($sql);
+        $deleteRoles -> bindParam(':id_usuario', $id, PDO::PARAM_INT);
+        $deleteRoles -> execute();
+
+        $sql = "delete from usuario where id=:id;";
+        $eliminar = $this->con->prepare($sql);
+        $eliminar -> bindParam(':id', $id, PDO::PARAM_INT);
+        $eliminar -> execute();
+
+        $this -> con -> commit();
+        return $eliminar -> rowCount();
+      } catch (Exception $e) {
+        $this -> con -> rollBack();
+        echo $e -> getMessage();
+      }
     }
+
+    return false;
+}
 
     function readOne ($id){
         $this->conexion();
