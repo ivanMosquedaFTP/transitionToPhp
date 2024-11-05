@@ -49,7 +49,4 @@ select r.rol, u.email from rol r inner join usuario_rol ur on r.id_rol = ur.id_r
 inner join usuario u on ur.id_usuario = u.id;
 
 -- queries
-desc usuario;
-desc usuario_rol;
-select * from usuario;
-select id from usuario where email = 'admin@admin.com';
+desc permiso;

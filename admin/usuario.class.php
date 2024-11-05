@@ -62,11 +62,47 @@
 
   function define($data) {
     if (!is_null($data)) {
+      $insertar = [];
+
+      $this -> con -> beginTransaction();
+
       try {
-        //code...
-      } catch (\Throwable $th) {
-        //throw $th;
+        $sql = "insert into permiso(permiso) values(':permiso');";
+        $insertar = $this->con->prepare($sql);
+        $insertar ->bindParam(":permiso", $data['permiso'], PDO::PARAM_STR);
+        $insertar -> execute();
+
+        $this -> con->commit();
+        return $insertar -> rowCount();
+      } catch (Exception $e) {
+        $this -> con -> rollBack();
+        echo 'error: '. $e->getMessage();
       }
+
+      return false;
+    }
+  }
+
+  function asign($data) {
+    if (!is_null($data)) {
+      $insertar = [];
+
+      $this -> con -> beginTransaction();
+
+      try {
+        $sql = "insert into permiso(permiso) values(':permiso');";
+        $insertar = $this->con->prepare($sql);
+        $insertar ->bindParam(":permiso", $data['permiso'], PDO::PARAM_STR);
+        $insertar -> execute();
+
+        $this -> con->commit();
+        return $insertar -> rowCount();
+      } catch (Exception $e) {
+        $this -> con -> rollBack();
+        echo 'error: '. $e->getMessage();
+      }
+
+      return false;
     }
   }
 
