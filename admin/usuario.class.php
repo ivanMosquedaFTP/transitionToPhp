@@ -2,6 +2,11 @@
  require_once ('../sistema.class.php');
 
  class usuario extends sistema {
+// acciones = crear y nuevo = agregar un nuevo usuario
+// acciones = definir = definir nuevos permisos
+// acciones = asignar = asignar permisos a roles
+// acciones = enrolar = enrolar usuario a cierto role
+
   function create($data) {
     $result = [];
     $insertar = [];
@@ -53,6 +58,10 @@
     }
 
     return false;
+  }
+
+  function define($data) {
+
   }
 
   function update ($id, $data){

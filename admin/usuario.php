@@ -6,6 +6,10 @@ $app = new usuario();
 $appRole = new rol();
 $app -> checkRole('administrador');
 
+// acciones = crear y nuevo = agregar un nuevo usuario
+// acciones = definir = definir nuevos permisos
+// acciones = asignar = asignar permisos a roles
+// acciones = enrolar = enrolar usuario a cierto role
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
