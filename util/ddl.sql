@@ -47,3 +47,8 @@ inner join usuario u on u.id = ur.id_usuario;
 -- query that returns rol for a user
 select r.rol, u.email from rol r inner join usuario_rol ur on r.id_rol = ur.id_rol
 inner join usuario u on ur.id_usuario = u.id;
+
+-- queries
+desc usuario;
+select * from usuario;
+select id from usuario where email = 'admin@admin.com';

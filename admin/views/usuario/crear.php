@@ -27,15 +27,15 @@
             <input class="form-control" type="text" name="data[email]" placeholder="Escribe aqui el email del usuario"  value="<?php if(isset($usuarios["email"])):echo($usuarios['email']);endif;?>"  id="email"/>
         </div>
 
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <label for="total_compras" class="form-label">Total de compras del nuevo usuario</label>
             <input class="form-control" type="text" name="data[total_compras]" placeholder="Escribe aqui el total de las compras del usuario"  value="<?php if(isset($usuarios["total_compras"])):echo($usuarios['total_compras']);endif;?>"  id="email"/>
-        </div>
+        </div> -->
 
         <?php foreach($roles as $rol): ?>
           <div>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="rol[<?php echo($rol['id_rol']);?>]">
+              <input class="form-check-input" type="checkbox" <?php $checked = ''; if(in_array($rol['id_rol'], $misRoles)): $checked = 'checked'; endif; echo($checked); ?> role="switch" id="flexSwitchCheckChecked" name="rol[<?php echo($rol['id_rol']);?>]">
               <label class="form-check-label" for="flexSwitchCheckChecked"><?php echo($rol['rol']);?></label>
             </div>
           </div>

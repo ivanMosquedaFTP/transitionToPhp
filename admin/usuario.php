@@ -11,6 +11,7 @@ $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
         $roles = $appRole -> readAll();
+        $misRoles = $app -> readAllRoles($id);
 
         include 'views/usuario/crear.php';
         break;
@@ -36,12 +37,14 @@ switch ($accion) {
     case 'actualizar': {
         $usuarios = $app -> readOne($id); 
         $roles = $appRole -> readAll();
+        $misRoles = $app -> readAllRoles($id);
+
         include('views/usuario/crear.php');
         break;
     }
     
     case 'modificar': {
-        $data= $_POST['data'];
+        $data= $_POST;
         $result=$app->update($id,$data);
         if($result){
             $mensaje="El usuario se ha actualizado";
