@@ -55,23 +55,25 @@
     return false;
   }
 
-  // TODO: fix
   function update ($id, $data){
     $this->conexion();
     $rol = $data['rol'];
     $data = $data['data'];
     $this -> con -> beginTransaction();
     try {
-      $sql = 'update usuario set correo = :correo, contrasena = md5(:contrasena) where id_usuario = :id_usuario;';
+      $sql = 'update usuario set nombre_completo = :nombre_completo, telefono = :telefono, contrasena = md5(:contrasena), email = :email, total_compras = :total_compras where id = :id;';
       $modificar=$this->con->prepare($sql);
-      $modificar->bindParam(':correo',$data['correo'], PDO::PARAM_STR);
+      $modificar->bindParam(':nombre_completo',$data['nombre_completo'], PDO::PARAM_STR);
+      $modificar->bindParam(':telefono',$data['telefono'], PDO::PARAM_STR);
       $modificar->bindParam(':contrasena',$data['contrasena'], PDO::PARAM_STR);
-      $modificar->bindParam(':id_usuario',$id, PDO::PARAM_INT);
+      $modificar->bindParam(':email',$data['email'], PDO::PARAM_STR);
+      $modificar->bindParam(':total_compras',$data['total_compras'], PDO::PARAM_INT);
+      $modificar->bindParam(':id',$id, PDO::PARAM_INT);
       $modificar->execute();
 
-      $sql = "delete from usuario_rol where id_usuario = :id_usuario;";
+      $sql = "delete from usuario_rol where id_usuario = :id;";
       $borrar_rol = $this -> con -> prepare($sql);
-      $borrar_rol -> bindParam(':id_usuario', $id, PDO::PARAM_INT);
+      $borrar_rol -> bindParam(':id', $id, PDO::PARAM_INT);
       $borrar_rol -> execute();
 
       if (!is_null($id)) {
@@ -88,6 +90,7 @@
       }
     } catch (Exception $e) {
       $this -> con -> rollback();
+      echo $e -> getMessage();
     }
 
     return false;
