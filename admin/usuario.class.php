@@ -61,7 +61,13 @@
   }
 
   function define($data) {
-
+    if (!is_null($data)) {
+      try {
+        //code...
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
+    }
   }
 
   function update ($id, $data){
