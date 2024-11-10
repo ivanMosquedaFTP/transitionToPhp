@@ -1,4 +1,6 @@
 -- make sure to first insert into table usuario the following
+ALTER TABLE usuario MODIFY COLUMN contrasena VARCHAR(50);
+
 insert into usuario(nombre_completo, telefono, contrasena, email) values('administrador', '1234', md5('1234'), 'admin@admin.com');
 insert into usuario(nombre_completo, telefono, contrasena, email) values('pruebas', '1234', md5('1234'), 'pruebas@pruebas.com');
 
@@ -11,6 +13,7 @@ insert into rol(rol) values ('cliente'), ('administrador');
 -- for table rol_permiso
 select * from rol;
 select * from permiso;
+select * from usuario;
 
 -- giving cliente permissions to see products and index
 insert into rol_permiso(id_rol, id_permiso) values(1, 1);

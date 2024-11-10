@@ -2,7 +2,7 @@ CREATE TABLE usuario (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_completo VARCHAR(100) NOT NULL,
     telefono VARCHAR(20),
-    contrasena VARCHAR(30),
+    contrasena VARCHAR(50),
     email VARCHAR(100) NOT NULL UNIQUE,
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total_compras INT DEFAULT 0
