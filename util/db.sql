@@ -12,6 +12,7 @@ CREATE TABLE usuario (
 CREATE TABLE producto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_producto VARCHAR(100) NOT NULL,
+    foto VARCHAR(255),
     descripcion TEXT,
     precio DECIMAL(10, 2) NOT NULL,
     stock INT NOT NULL,
