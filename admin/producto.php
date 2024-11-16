@@ -1,6 +1,7 @@
 <?php
 require_once ('producto.class.php');
 $app = new producto();
+$app -> checkRole('administrador');
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;

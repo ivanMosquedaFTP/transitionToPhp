@@ -3,6 +3,7 @@ require_once ('recompensa.class.php');
 require_once ('usuario.class.php');
 $app = new recompensa();
 $appUsuario = new usuario();
+$app -> checkRole('administrador');
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
