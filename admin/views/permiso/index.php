@@ -1,23 +1,23 @@
 <?php require('views/header/headerAdministrador.php');?>
-  <h1>Roles</h1>
+  <h1>Permisos</h1>
   <?php if (isset($mensaje)): $app -> alerta($tipo, $mensaje); endif;?>
-  <a href="rol.php?accion=crear" class="btn btn-success">Nuevo</a>
+  <a href="permiso.php?accion=crear" class="btn btn-success">Nuevo</a>
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id rol</th>
-      <th scope="col">Rol</th>
+      <th scope="col">Id permiso</th>
+      <th scope="col">Permiso</th>
     </tr>
   </thead>
   <tbody>
-    <?php foreach($roles as $rol): ?>
+    <?php foreach($permisos as $permiso): ?>
     <tr>
-      <th scope="row"><?php echo $rol ['id_rol']; ?></th>
-      <td><?php echo $rol ['rol']; ?></td>
+      <th scope="row"><?php echo $permiso ['id_permiso']; ?></th>
+      <td><?php echo $permiso ['permiso']; ?></td>
       <td>
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-          <a href="rol.php?accion=actualizar&id=<?php echo $rol ['id_rol']; ?>" class="btn btn-warning">Actualizar</a>
-          <a href="rol.php?accion=eliminar&id=<?php echo $rol ['id_rol']; ?>" class="btn btn-danger">Eliminar</a>
+        <div class="btn-group" permisoe="group" aria-label="Basic radio toggle button group">
+          <a href="permiso.php?accion=actualizar&id=<?php echo $permiso['id_permiso']; ?>" class="btn btn-warning">Actualizar</a>
+          <a href="permiso.php?accion=eliminar&id=<?php echo $permiso['id_permiso']; ?>" class="btn btn-danger">Eliminar</a>
         </div>
       </td>
     </tr>
