@@ -26,8 +26,6 @@
             <li><a class="dropdown-item" href="usuario.php">Usuarios</a></li>
             <li><a class="dropdown-item" href="rol.php">Roles</a></li>
             <li><a class="dropdown-item" href="permiso.php">Permisos</a></li>
-            <li><a class="dropdown-item" href="rolPermiso.php">Rol - Permiso</a></li>
-            <li><a class="dropdown-item" href="usuarioRol.php">Usuario - Rol</a></li>
           </ul>
         </li>
         <li class="nav-item">
