@@ -54,6 +54,7 @@ inner join usuario u on ur.id_usuario = u.id;
 -- queries
 desc permiso;
 desc producto;
+desc recompensa;
 
 -- ddl
 alter table producto add column foto varchar(255);

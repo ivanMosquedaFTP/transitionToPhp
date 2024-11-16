@@ -6,11 +6,10 @@
         $result = [];
         $insertar = [];
         $this -> conexion();
-        $sql="insert into recompensa(usuario_id, descripcion, fecha_otorgada) values(:usuario_id, :descripcion, :fecha_otorgada);";
+        $sql="insert into recompensa(usuario_id, descripcion) values(:usuario_id, :descripcion);";
         $insertar = $this->con->prepare($sql);
         $insertar -> bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_STR);
         $insertar -> bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
-        $insertar -> bindParam(':fecha_otorgada', $data['fecha_otorgada'], PDO::PARAM_STR);
         $insertar -> execute();
         $result = $insertar -> rowCount();
         return $result;

@@ -17,7 +17,7 @@ switch ($accion) {
         $data=$_POST['data'];
         $resultado = $app->create($data);
         if ($resultado) {
-            $mensaje = "recompensa dada de alta correctamente";
+            $mensaje = "Recompensa dada de alta correctamente";
             $tipo = "success";
         } else {
             $mensaje = "La recompensa no ha sido dada de alta";
