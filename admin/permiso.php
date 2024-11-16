@@ -1,13 +1,13 @@
 <?php
-require_once ('rol.class.php');
-$app = new rol();
+require_once ('permiso.class.php');
+$app = new permiso();
 $app -> checkRole('administrador');
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
-        include 'views/rol/crear.php';
+        include 'views/permiso/crear.php';
         break;
     }
 
@@ -15,21 +15,21 @@ switch ($accion) {
         $data=$_POST['data'];
         $resultado = $app->create($data);
         if ($resultado) {
-            $mensaje = "rol dado de alta correctamente";
+            $mensaje = "Permiso dado de alta correctamente";
             $tipo = "success";
         } else {
-            $mensaje = "El rol no ha sido dado de alta";
+            $mensaje = "El permiso no ha sido dado de alta";
             $tipo = "danger";
         }
 
-        $roles = $app->readAll();
-        include('views/rol/index.php');
+        $permisos = $app->readAll();
+        include('views/permiso/index.php');
         break;
     }
 
     case 'actualizar': {
-        $roles = $app -> readOne($id); 
-        include('views/rol/crear.php');
+        $permisos = $app -> readOne($id); 
+        include('views/permiso/crear.php');
         break;
     }
     
@@ -37,14 +37,14 @@ switch ($accion) {
         $data= $_POST['data'];
         $result=$app->update($id,$data);
         if($result){
-            $mensaje="El rol se ha actualizado";
+            $mensaje="El permiso se ha actualizado";
             $tipo="success";
         }else{
             $mensaje="No se ha actualizado";
             $tipo="danger";
         }
-        $roles = $app->readAll();
-        include('views/rol/index.php');
+        $permisos = $app->readAll();
+        include('views/permiso/index.php');
         break;
     }
 
@@ -53,22 +53,22 @@ switch ($accion) {
             if (is_numeric($id)) {
                 $resultado = $app -> delete($id);
                 if ($resultado) {
-                    $mensaje = "El rol se elimino correctamente";
+                    $mensaje = "El permiso se eliminó correctamente";
                     $tipo = "success";
                 } else {
-                    $mensaje = "El rol no se elimino correctamente";
+                    $mensaje = "El permiso no se eliminó correctamente";
                     $tipo = "danger";
                 }
             }
         }
-        $roles = $app->readAll();
-        include('views/rol/index.php');
+        $permisos = $app->readAll();
+        include('views/permiso/index.php');
         break;
     }
 
     default: {
-        $roles = $app->readAll();
-        include 'views/rol/index.php';
+        $permisos = $app->readAll();
+        include 'views/permiso/index.php';
         break;
     }
 }
