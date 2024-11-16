@@ -11,6 +11,7 @@
       <th scope="col">Precio</th>
       <th scope="col">Stock</th>
       <th scope="col">Fecha de publicación</th>
+      <th scope="col">Opciones</th>
     </tr>
   </thead>
   <tbody>

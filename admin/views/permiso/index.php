@@ -7,6 +7,7 @@
     <tr>
       <th scope="col">Id permiso</th>
       <th scope="col">Permiso</th>
+      <th scope="col">Opciones</th>
     </tr>
   </thead>
   <tbody>

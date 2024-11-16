@@ -10,6 +10,7 @@
       <th scope="col">Producto</th>
       <th scope="col">Cantidad</th>
       <th scope="col">Fecha de la venta</th>
+      <th scope="col">Opciones</th>
     </tr>
   </thead>
   <tbody>

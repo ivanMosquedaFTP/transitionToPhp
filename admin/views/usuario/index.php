@@ -11,6 +11,7 @@
       <th scope="col">email</th>
       <th scope="col">Fecha de registro</th>
       <th scope="col">Total de compras</th>
+      <th scope="col">Opciones</th>
     </tr>
   </thead>
   <tbody>

@@ -7,6 +7,7 @@
     <tr>
       <th scope="col">Id rol</th>
       <th scope="col">Rol</th>
+      <th scope="col">Opciones</th>
     </tr>
   </thead>
   <tbody>

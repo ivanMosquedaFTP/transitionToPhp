@@ -16,7 +16,6 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="producto.php">Productos</a></li>
             <li><a class="dropdown-item" href="recompensa.php">Recompensas</a></li>
-            <li><a class="dropdown-item" href="administrador.php">Administradores</a></li>
             <li><a class="dropdown-item" href="venta.php">Ventas</a></li>
           </ul>
         </li>
