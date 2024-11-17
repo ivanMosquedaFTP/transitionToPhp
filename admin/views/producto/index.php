@@ -38,13 +38,15 @@
     <?php foreach ($productos as $producto): ?>
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-              <img src="<?php 
-                          if(file_exists("../image/shop/".$producto['foto'])) {
-                            echo("../image/shop/".$producto['foto']);
-                          } else {
-                            echo("../image/shop/default.png");
-                          }
-                        ?>" class="card-img-top">
+              <div class="card-img-container">
+                <img src="<?php 
+                            if(file_exists("../image/shop/".$producto['foto'])) {
+                              echo("../image/shop/".$producto['foto']);
+                            } else {
+                              echo("../image/shop/default.png");
+                            }
+                          ?>" class="card-img-top">
+              </div>
               <div class="card-body">
                 <h5 class="card-title"><?php echo htmlspecialchars($producto['nombre_producto']); ?></h5>
                 <p class="card-text"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
