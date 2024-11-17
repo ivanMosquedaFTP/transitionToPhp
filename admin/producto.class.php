@@ -44,7 +44,7 @@
     function delete ($id){
         $this -> conexion();
         $result = [];
-        if (is_numeric($id)) {
+        if (!is_null($id) && is_numeric($id)) {
             $sql = "delete from producto where id=:id;";
             $eliminar = $this->con->prepare($sql);
             $eliminar -> bindParam(':id', $id, PDO::PARAM_INT);
@@ -100,6 +100,25 @@
             }
         }
         return $default;
+    }
+
+    function deleteImage($id) {
+        $this->conexion();
+
+        $sql = "SELECT foto FROM producto WHERE id = :id";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $foto = $stmt->fetchColumn();
+    
+        if ($foto && $foto !== 'default.png') {
+            $ruta_imagen = "C:\\xampp\\htdocs\\transitionToPhp\\image\\shop\\" . $foto;
+            if (file_exists($ruta_imagen)) {
+                print_r($ruta_imagen);
+                die();
+                // unlink($ruta_imagen);
+            }
+        }
     }
  }
 ?>
