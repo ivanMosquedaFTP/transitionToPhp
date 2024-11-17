@@ -202,25 +202,43 @@
 }
 
     function readOne ($id){
-        $this->conexion();
         $result = [];
-        $consulta = 'SELECT * FROM usuario where id=:id;';
-        $sql = $this->con->prepare($consulta);
-        $sql->bindParam(":id",$id,PDO::PARAM_INT);
-        $sql -> execute();
+        $this->conexion();
 
-        $result = $sql->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        $this -> con -> beginTransaction();
+
+        try {
+          $consulta = 'SELECT * FROM usuario where id=:id;';
+          $sql = $this->con->prepare($consulta);
+          $sql->bindParam(":id",$id,PDO::PARAM_INT);
+          $sql -> execute();
+
+          $result = $sql->fetch(PDO::FETCH_ASSOC);
+          return $result;
+        } catch (Exception $e) {
+          $this -> con ->rollBack();
+          echo $e -> getMessage();
+        }
+
+        return false;
     }
 
     function readAll (){
-        $this -> conexion();
         $result = [];
-        $consulta ='select * from usuario;';
-        $sql = $this->con->prepare ($consulta); 
-        $sql -> execute();
-        $result = $sql -> fetchALL(PDO::FETCH_ASSOC);    
-        return $result;
+        $this -> conexion();
+        $this -> con->beginTransaction();
+
+        try {
+          $consulta ='select * from usuario;';
+          $sql = $this->con->prepare ($consulta); 
+          $sql -> execute();
+          $result = $sql -> fetchALL(PDO::FETCH_ASSOC);    
+          return $result;
+        } catch (Exception $e) {
+          $this -> con ->rollBack();
+          echo $e -> getMessage();
+        }
+
     }
 
     function readAllRoles($id){
