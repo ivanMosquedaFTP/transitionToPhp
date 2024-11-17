@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <form method="post" action="producto.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
+        <form method="post" enctype="multipart/form-data" action="producto.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
             <label for="nombre_producto" class="form-label">Nombre del producto</label>
             <input class="form-control" type="text" name="data[nombre_producto]" placeholder="Escribe aqui el nombre del producto" value="<?php if(isset($productos["nombre_producto"])):echo($productos['nombre_producto']);endif;?>" id="nombre_producto"/>

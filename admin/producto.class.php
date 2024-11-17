@@ -8,12 +8,15 @@
         $this -> conexion();
         $sql="insert into producto(nombre_producto, descripcion, precio, stock, foto) values(:nombre_producto, :descripcion, :precio, :stock, :foto);";
         $insertar = $this->con->prepare($sql);
+
+        $foto = $this -> uploadFoto();
+
         $insertar -> bindParam(':nombre_producto', $data['nombre_producto'], PDO::PARAM_STR);
         $insertar -> bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
         $precio = strval($data['precio']);
         $insertar -> bindParam(':precio', $data['precio'], PDO::PARAM_STR);
         $insertar -> bindParam(':stock', $data['stock'], PDO::PARAM_INT);
-        $insertar -> bindParam(':foto', $data['foto'], PDO::PARAM_STR);
+        $insertar -> bindParam(':foto',$foto, PDO::PARAM_STR);
         $insertar -> execute();
         $result = $insertar -> rowCount();
         return $result;
@@ -74,7 +77,6 @@
     }
 
     function uploadFoto() {
-        // echo('<pre />');
         $tipos = array("image/jpeg", "image/png", "image/gif", "image/webp");
         $data = $_FILES['foto'];
 
@@ -87,7 +89,7 @@
                     $imagen = md5($n.$nombre[0]).".".$nombre[sizeof($nombre) - 1];
 
                     $origen = $data['tmp_name'];
-                    $destino = "C:\\xampp\\htdocs\\crops\\uploads\\".$imagen;
+                    $destino = "C:\\xampp\\htdocs\\transitionToPhp\\image\\shop\\".$imagen;
 
                     if (move_uploaded_file($origen, $destino)) {
                         return $imagen;
