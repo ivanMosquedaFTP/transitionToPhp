@@ -35,6 +35,9 @@ switch ($accion) {
     
     case 'modificar': {
         $data= $_POST['data'];
+        // echo('<pre />');
+        // print_r($data);
+        // die();
         $result=$app->update($id,$data);
         if($result){
             $mensaje="El producto se ha actualizado";

@@ -27,6 +27,11 @@
             <input class="form-control" type="text" name="data[stock]" placeholder="Escribe aqui el stock del producto"  value="<?php if(isset($productos["stock"])):echo($productos['stock']);endif;?>"  id="stock"/>
         </div>
 
+        <div class="mb-3">
+            <label for="foto" class="form-label">Fotografía</label>
+            <input class="form-control" type="file" name="foto" placeholder="Selecciona la fotografía" id="foto"/>
+        </div>
+
         <input type="submit" value="Guardar" name="data[enviar]" class="btn btn-primary w-100">
         </form>
     </div>

@@ -6,13 +6,14 @@
         $result = [];
         $insertar = [];
         $this -> conexion();
-        $sql="insert into producto(nombre_producto, descripcion, precio, stock) values(:nombre_producto, :descripcion, :precio, :stock);";
+        $sql="insert into producto(nombre_producto, descripcion, precio, stock, foto) values(:nombre_producto, :descripcion, :precio, :stock, :foto);";
         $insertar = $this->con->prepare($sql);
         $insertar -> bindParam(':nombre_producto', $data['nombre_producto'], PDO::PARAM_STR);
         $insertar -> bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
         $precio = strval($data['precio']);
         $insertar -> bindParam(':precio', $data['precio'], PDO::PARAM_STR);
         $insertar -> bindParam(':stock', $data['stock'], PDO::PARAM_INT);
+        $insertar -> bindParam(':foto', $data['foto'], PDO::PARAM_STR);
         $insertar -> execute();
         $result = $insertar -> rowCount();
         return $result;
@@ -22,13 +23,14 @@
         $this->conexion();
         $result = [];
         if (is_numeric($id)) {
-            $sql = 'update producto set nombre_producto=:nombre_producto=:nombre_producto, descripcion=:descripcion, precio=:precio, stock=:stock where id=:id;';
+            $sql = 'update producto set nombre_producto=:nombre_producto=:nombre_producto, descripcion=:descripcion, precio=:precio, stock=:stock, foto=:foto where id=:id;';
             $modificar=$this->con->prepare($sql);
             $modificar->bindParam(':nombre_producto',$data['nombre_producto'], PDO::PARAM_STR);
             $modificar->bindParam(':descripcion',$data['descripcion'], PDO::PARAM_STR);
             $precio = strval($data['precio']);
             $modificar->bindParam(':precio',$data['precio'], PDO::PARAM_STR);
             $modificar->bindParam(':stock',$data['stock'], PDO::PARAM_INT);
+            $modificar -> bindParam(':foto', $data['foto'], PDO::PARAM_STR);
             $modificar->bindParam(':id',$id, PDO::PARAM_INT);
             $modificar->execute();
             $result= $modificar->rowCount();
@@ -61,7 +63,7 @@
         return $result;
     }
 
-    function readAll (){
+    function readAll(){
         $this -> conexion();
         $result = [];
         $consulta ='select * from producto;';
@@ -69,6 +71,33 @@
         $sql -> execute();
         $result = $sql -> fetchALL(PDO::FETCH_ASSOC);    
         return $result;
+    }
+
+    function uploadFoto() {
+        // echo('<pre />');
+        $tipos = array("image/jpeg", "image/png", "image/gif", "image/webp");
+        $data = $_FILES['foto'];
+
+        $default = "default.png";
+        if($data['error'] == 0) {
+            if ($data['size'] <= 1048576) {
+                if (in_array($data['type'], $tipos)) {
+                    $n = rand(1, 1000000);
+                    $nombre = explode('.', $data['name']);
+                    $imagen = md5($n.$nombre[0]).".".$nombre[sizeof($nombre) - 1];
+
+                    $origen = $data['tmp_name'];
+                    $destino = "C:\\xampp\\htdocs\\crops\\uploads\\".$imagen;
+
+                    if (move_uploaded_file($origen, $destino)) {
+                        return $imagen;
+                    }
+
+                    return $default;
+                }
+            }
+        }
+        return $default;
     }
  }
 ?>
