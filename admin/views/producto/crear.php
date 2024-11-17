@@ -9,22 +9,22 @@
         <form method="post" enctype="multipart/form-data" action="producto.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
             <label for="nombre_producto" class="form-label">Nombre del producto</label>
-            <input class="form-control" type="text" name="data[nombre_producto]" placeholder="Escribe aqui el nombre del producto" value="<?php if(isset($productos["nombre_producto"])):echo($productos['nombre_producto']);endif;?>" id="nombre_producto"/>
+            <input class="form-control" type="text" name="data[nombre_producto]" required="true" placeholder="Escribe aqui el nombre del producto" value="<?php if(isset($productos["nombre_producto"])):echo($productos['nombre_producto']);endif;?>" id="nombre_producto"/>
         </div>
 
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción del nuevo producto</label>
-            <input class="form-control" type="text" name="data[descripcion]" placeholder="Escribe aqui la descripción del producto"  value="<?php if(isset($productos["descripcion"])):echo($productos['descripcion']);endif;?>"  id="descripcion"/>
+            <input class="form-control" type="text" name="data[descripcion]" required="true" placeholder="Escribe aqui la descripción del producto"  value="<?php if(isset($productos["descripcion"])):echo($productos['descripcion']);endif;?>"  id="descripcion"/>
         </div>
 
         <div class="mb-3">
             <label for="precio" class="form-label">Precio del nuevo producto</label>
-            <input class="form-control" type="text" name="data[precio]" placeholder="Escribe aqui el precio del producto"  value="<?php if(isset($productos["precio"])):echo($productos['precio']);endif;?>"  id="precio"/>
+            <input class="form-control" type="text" name="data[precio]" required="true" placeholder="Escribe aqui el precio del producto"  value="<?php if(isset($productos["precio"])):echo($productos['precio']);endif;?>"  id="precio"/>
         </div>
 
         <div class="mb-3">
             <label for="stock" class="form-label">Stock del nuevo producto</label>
-            <input class="form-control" type="text" name="data[stock]" placeholder="Escribe aqui el stock del producto"  value="<?php if(isset($productos["stock"])):echo($productos['stock']);endif;?>"  id="stock"/>
+            <input class="form-control" type="text" name="data[stock]" required="true" placeholder="Escribe aqui el stock del producto"  value="<?php if(isset($productos["stock"])):echo($productos['stock']);endif;?>"  id="stock"/>
         </div>
 
         <div class="mb-3">

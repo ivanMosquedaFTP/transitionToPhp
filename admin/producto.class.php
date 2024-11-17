@@ -82,7 +82,7 @@
 
         $default = "default.png";
         if($data['error'] == 0) {
-            if ($data['size'] <= 1048576) {
+            if ($data['size'] <= 5242880) {
                 if (in_array($data['type'], $tipos)) {
                     $n = rand(1, 1000000);
                     $nombre = explode('.', $data['name']);
