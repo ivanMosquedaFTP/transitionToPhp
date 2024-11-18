@@ -1,4 +1,6 @@
 <?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
     session_start();
     require_once('config.class.php');
     class sistema {
@@ -117,6 +119,65 @@
               $tipo = "danger";
               $this -> alerta($tipo, $mensaje);
               die();
+            }
+        }
+
+        function sendMail($destinatario, $asunto, $mensaje) {
+            require 'vendor/autoload.php';
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 465;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->SMTPAuth = true;
+            $mail->Username = '21031178@itcelaya.edu.mx';
+            $mail->Password = 'hddtbkluglsvkokq';
+            $mail->setFrom('21031178@itcelaya.edu.mx', 'CoolHats');
+            $mail->addAddress($destinatario, 'Estimado cliente');
+            $mail->Subject = $asunto;
+            $mail->msgHTML($mensaje);
+            $mail->AltBody = 'This is a plain-text message body';
+  
+            if (!$mail->send()) {
+              echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+              echo 'Message sent!';
+            }
+        }
+
+        function sendRecompensaAknowledgeEmail($destinatario, $nombreUsuario, $detalleRecompensa) {
+            require 'vendor/autoload.php';
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 465;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->SMTPAuth = true;
+            $mail->Username = '21031178@itcelaya.edu.mx';
+            $mail->Password = 'hddtbkluglsvkokq';
+            $mail->setFrom('21031178@itcelaya.edu.mx', 'CoolHats');
+        
+            $asunto = "Felicitaciones".$nombreUsuario."has obtenido una recompensa en CoolHats";
+        
+            $mensaje = "
+                <h1>¡Felicidades".$nombreUsuario."!</h1>
+                <p>Te informamos que has obtenido la siguiente recompensa:</p>
+                <p><strong>Recompensa:</strong>".$detalleRecompensa."</p>
+                <p>Visítanos pronto para disfrutar de tus beneficios.</p>
+                <p>Atentamente,<br>El equipo de CoolHats</p>
+            ";
+        
+            $mail->addAddress($destinatario, $nombreUsuario);
+            $mail->Subject = $asunto;
+            $mail->msgHTML($mensaje);
+            $mail->AltBody = strip_tags($mensaje);
+        
+            if (!$mail->send()) {
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                echo 'Message sent!';
             }
         }
     }

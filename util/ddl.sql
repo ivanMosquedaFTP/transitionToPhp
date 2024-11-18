@@ -55,7 +55,9 @@ inner join usuario u on ur.id_usuario = u.id;
 desc permiso;
 desc producto;
 desc recompensa;
+desc usuario;
 select * from producto;
+select u.email from usuario u inner join recompensa r on u.id=r.usuario_id;
 
 -- ddl
 alter table producto add column foto varchar(255);

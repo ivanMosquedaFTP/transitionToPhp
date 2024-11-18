@@ -12,6 +12,20 @@ class recompensa extends sistema {
             $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
             $stmt->execute();
             $this->con->commit();
+
+            $userId = $this -> getUserEmail($data['usuario_id']);
+            // echo'<pre />';
+            // print_r($userId);
+            // die();
+
+            if (!empty($userId) && isset($userId[0]['email'])) {
+                $email = $userId[0]['email'];
+                // echo'<pre />';
+                // print_r($email);
+                // die();
+                $this -> sendMail($email, 'Recompensa recibida en CoolHats', 'Felicidades estimado cliente, le informamos que tiene una recompensa en CoolHats, visite nuestra sucursal para mas información');
+            }
+
             return $stmt->rowCount();
         } catch (Exception $e) {
             $this->con->rollBack();
@@ -85,6 +99,25 @@ class recompensa extends sistema {
         } catch (Exception $e) {
             throw new Exception("Error en readAll: " . $e->getMessage());
         }
+    }
+
+    function getUserEmail($id) {
+        $this->conexion();
+        $this -> con -> beginTransaction();
+
+        try {
+            $sql = "select u.email as email from usuario u inner join recompensa r on u.id=r.usuario_id where r.usuario_id = :id;";
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $this -> con -> commit();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $this -> con -> rollBack();
+            throw new Exception("El usuario especificado no existe". $e->getMessage());
+        }
+
+        return false;
     }
 }
 ?>
