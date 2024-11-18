@@ -33,23 +33,46 @@ class recompensa extends sistema {
 
     function update($id, $data) {
         $this->conexion();
-        $this->con->beginTransaction();
         try {
             if (is_numeric($id)) {
-                $sql = "UPDATE recompensa SET usuario_id=:usuario_id, descripcion=:descripcion, fecha_otorgada=:fecha_otorgada WHERE id=:id;";
-                $stmt = $this->con->prepare($sql);
-                $stmt->bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_STR);
-                $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
-                $stmt->bindParam(':fecha_otorgada', $data['fecha_otorgada'], PDO::PARAM_STR);
-                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-                $stmt->execute();
-                $this->con->commit();
-                return $stmt->rowCount();
+                $recompensaAnterior = $this->readOne($id);
+    
+                if ($recompensaAnterior) {
+                    $this->con->beginTransaction();
+    
+                    $sql = "UPDATE recompensa 
+                            SET usuario_id = :usuario_id, descripcion = :descripcion, fecha_otorgada = :fecha_otorgada 
+                            WHERE id = :id;";
+                    $stmt = $this->con->prepare($sql);
+                    $stmt->bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_INT);
+                    $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
+                    $stmt->bindParam(':fecha_otorgada', $data['fecha_otorgada'], PDO::PARAM_STR);
+                    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                    $stmt->execute();
+                    $this->con->commit();
+    
+                    $userEmail = $this->getUserEmail($data['usuario_id']);
+                    $userName = $this->getUserName($data['usuario_id']);
+    
+                    if (!empty($userEmail) && isset($userEmail[0]['email']) && !empty($userName)) {
+                        $email = $userEmail[0]['email'];
+                        $nombreUsuario = $userName['nombre_completo'];
+                        $detalleRecompensa = $data['descripcion'];
+    
+                        $this->sendRecompensaUpdateEmail($email, $nombreUsuario, $detalleRecompensa);
+                    }
+    
+                    return $stmt->rowCount();
+                } else {
+                    throw new Exception("La recompensa no existe.");
+                }
             } else {
                 throw new Exception("ID no válido.");
             }
         } catch (Exception $e) {
-            $this->con->rollBack();
+            if ($this->con->inTransaction()) {
+                $this->con->rollBack();
+            }
             throw new Exception("Error en update: " . $e->getMessage());
         }
     }

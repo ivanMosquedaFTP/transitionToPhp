@@ -217,5 +217,41 @@
                 echo 'Message sent!';
             }
         }
+
+        function sendRecompensaUpdateEmail($destinatario, $nombreUsuario, $detalleRecompensa) {
+            require 'vendor/autoload.php';
+            $mail = new PHPMailer();
+            $mail->isSMTP();
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;
+            $mail->Host = 'smtp.gmail.com';
+            $mail->Port = 465;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->SMTPAuth = true;
+            $mail->Username = '21031178@itcelaya.edu.mx';
+            $mail->Password = 'hddtbkluglsvkokq';
+            $mail->setFrom('21031178@itcelaya.edu.mx', 'CoolHats');
+            $mail->CharSet = 'UTF-8';
+        
+            $asunto = "Actualización de recompensa en CoolHats";
+        
+            $mensaje = "
+                <h1>Hola ".$nombreUsuario.",</h1>
+                <p>Te informamos que tu recompensa ha sido actualizada con los siguientes detalles:</p>
+                <p><strong>Nueva Descripción: </strong>".$detalleRecompensa."</p>
+                <p>Gracias por ser parte de CoolHats. Visítanos para disfrutar de tus beneficios.</p>
+                <p>Atentamente,<br>El equipo de CoolHats</p>
+            ";
+        
+            $mail->addAddress($destinatario, $nombreUsuario);
+            $mail->Subject = $asunto;
+            $mail->msgHTML($mensaje);
+            $mail->AltBody = strip_tags($mensaje);
+        
+            if (!$mail->send()) {
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            } else {
+                echo 'Message sent!';
+            }
+        }
     }
 ?>
