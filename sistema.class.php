@@ -158,14 +158,15 @@
             $mail->Username = '21031178@itcelaya.edu.mx';
             $mail->Password = 'hddtbkluglsvkokq';
             $mail->setFrom('21031178@itcelaya.edu.mx', 'CoolHats');
+            $mail->CharSet = 'UTF-8';
         
-            $asunto = "Felicitaciones".$nombreUsuario."has obtenido una recompensa en CoolHats";
+            $asunto = "Felicitaciones ".$nombreUsuario." has obtenido una recompensa en CoolHats";
         
             $mensaje = "
-                <h1>¡Felicidades".$nombreUsuario."!</h1>
+                <h1>¡Felicidades ".$nombreUsuario."!</h1>
                 <p>Te informamos que has obtenido la siguiente recompensa:</p>
-                <p><strong>Recompensa:</strong>".$detalleRecompensa."</p>
-                <p>Visítanos pronto para disfrutar de tus beneficios.</p>
+                <p><strong>Recompensa: </strong>".$detalleRecompensa."</p>
+                <p> Visitanos pronto para disfrutar de tus beneficios.</p>
                 <p>Atentamente,<br>El equipo de CoolHats</p>
             ";
         

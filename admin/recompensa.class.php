@@ -13,17 +13,15 @@ class recompensa extends sistema {
             $stmt->execute();
             $this->con->commit();
 
-            $userId = $this -> getUserEmail($data['usuario_id']);
-            // echo'<pre />';
-            // print_r($userId);
-            // die();
+            $userEmail = $this->getUserEmail($data['usuario_id']);
+            $userName = $this->getUserName($data['usuario_id']);
 
-            if (!empty($userId) && isset($userId[0]['email'])) {
-                $email = $userId[0]['email'];
-                // echo'<pre />';
-                // print_r($email);
-                // die();
-                $this -> sendMail($email, 'Recompensa recibida en CoolHats', 'Felicidades estimado cliente, le informamos que tiene una recompensa en CoolHats, visite nuestra sucursal para mas información');
+            if (!empty($userEmail) && isset($userEmail[0]['email']) && !empty($userName)) {
+                $email = $userEmail[0]['email'];
+                $nombreUsuario = $userName['nombre_completo'];
+                $detalleRecompensa = $data['descripcion'];
+
+                $this->sendRecompensaAknowledgeEmail($email, $nombreUsuario, $detalleRecompensa);
             }
 
             return $stmt->rowCount();
@@ -118,6 +116,19 @@ class recompensa extends sistema {
         }
 
         return false;
+    }
+
+    function getUserName($id) {
+        $this->conexion();
+        try {
+            $sql = "SELECT u.nombre_completo AS nombre_completo FROM usuario u inner join recompensa r on u.id=r.usuario_id WHERE u.id = :id;";
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            throw new Exception("Error al obtener el nombre del usuario: " . $e->getMessage());
+        }
     }
 }
 ?>
