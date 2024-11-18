@@ -34,20 +34,33 @@ switch ($accion) {
     }
     
     case 'modificar': {
-        $data= $_POST['data'];
-        // echo('<pre />');
-        // print_r($data);
-        // die();
-        $result=$app->update($id,$data);
-        if($result){
-            $mensaje="El producto se ha actualizado";
-            $tipo="success";
-        }else{
-            $mensaje="No se ha actualizado";
-            $tipo="danger";
+        if ($id && is_numeric($id)) {
+            $data = $_POST['data'];
+            $imagen_actual = $app->getImageById($id);
+    
+            if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+                $data['foto'] = $app->uploadFoto();
+            } elseif (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_NO_FILE) {
+                $data['foto'] = $imagen_actual;
+            } else {
+
+                $tipo = "danger";
+                $mensaje = "Error al procesar la imagen.";
+                include 'views/producto/index.php';
+                break;
+            }
+    
+            $resultado = $app->update($id, $data);
+
+            $tipo = "success";
+            $mensaje = $resultado ? "Producto actualizado correctamente." : "Error al actualizar el producto.";
+        } else {
+            $tipo = "danger";
+            $mensaje = "ID de producto no válido o no encontrado.";
         }
+
         $productos = $app->readAll();
-        include('views/producto/index.php');
+        include 'views/producto/index.php';
         break;
     }
 

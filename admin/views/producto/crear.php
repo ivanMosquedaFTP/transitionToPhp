@@ -5,6 +5,9 @@
 
 <div class="row">
     <div class="col-md-1"></div>
+    <?php if ($accion == 'modificar'): ?>
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+    <?php endif; ?>
     <div class="col-md-10">
         <form method="post" enctype="multipart/form-data" action="producto.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">

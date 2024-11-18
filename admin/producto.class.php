@@ -34,30 +34,25 @@
         return false;
     }
 
-    function update ($id, $data){
-        $result = [];
+    function update($id, $data) {
         $this->conexion();
-        $this -> con -> beginTransaction();
-
+        $this->con->beginTransaction();
         try {
-            if (!is_null($id) && is_numeric($id)) {
-                $sql = 'update producto set nombre_producto=:nombre_producto=:nombre_producto, descripcion=:descripcion, precio=:precio, stock=:stock, foto=:foto where id=:id;';
-                $modificar=$this->con->prepare($sql);
-                $modificar->bindParam(':nombre_producto',$data['nombre_producto'], PDO::PARAM_STR);
-                $modificar->bindParam(':descripcion',$data['descripcion'], PDO::PARAM_STR);
-                $precio = strval($data['precio']);
-                $modificar->bindParam(':precio',$data['precio'], PDO::PARAM_STR);
-                $modificar->bindParam(':stock',$data['stock'], PDO::PARAM_INT);
-                $modificar -> bindParam(':foto', $data['foto'], PDO::PARAM_STR);
-                $modificar->bindParam(':id',$id, PDO::PARAM_INT);
-                $modificar->execute();
-                $result= $modificar->rowCount();
-                $this -> con -> commit();
-                return $result;
-            }
+            $sql = "UPDATE producto SET nombre_producto=:nombre_producto, descripcion=:descripcion, precio=:precio, stock=:stock, foto=:foto WHERE id=:id;";
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam(':nombre_producto', $data['nombre_producto'], PDO::PARAM_STR);
+            $stmt->bindParam(':descripcion', $data['descripcion'], PDO::PARAM_STR);
+            $precio = strval($data['precio']);
+            $stmt->bindParam(':precio', $data['precio'], PDO::PARAM_STR);
+            $stmt->bindParam(':stock', $data['stock'], PDO::PARAM_INT);
+            $stmt->bindParam(':foto', $data['foto'], PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $this->con->commit();
+            return $stmt->rowCount();
         } catch (Exception $e) {
-            $this -> con->rollback();
-            echo''. $e -> getMessage() .'';
+            $this->con->rollBack();
+            throw new Exception("Error en update: " . $e->getMessage());
         }
 
         return false;
@@ -174,6 +169,22 @@
         return $default;
     }
 
+    function getImageById($id) {
+        $this->conexion();
+        $this->con->beginTransaction();
+        try {
+            $sql = "SELECT foto FROM producto WHERE id = :id";
+            $stmt = $this->con->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $foto = $stmt->fetchColumn();
+            $this->con->commit();
+            return $foto;
+        } catch (Exception $e) {
+            $this->con->rollBack();
+            throw new Exception("Error en getImageById: " . $e->getMessage());
+        }
+    }
     function deleteImage($filename) {
         try {
             $ruta_imagen = "C:\\xampp\\htdocs\\transitionToPhp\\image\\shop\\" . $filename;
