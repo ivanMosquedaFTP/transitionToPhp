@@ -56,23 +56,43 @@ class recompensa extends sistema {
 
     function delete($id) {
         $this->conexion();
-        $this->con->beginTransaction();
         try {
             if (is_numeric($id)) {
-                $sql = "DELETE FROM recompensa WHERE id=:id;";
-                $stmt = $this->con->prepare($sql);
-                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-                $stmt->execute();
-                $this->con->commit();
+                $recompensa = $this->readOne($id);
+                if ($recompensa) {
+                    $usuarioId = $recompensa['usuario_id'];
+                    $detalleRecompensa = $recompensa['descripcion'];
+    
+                    $this->con->beginTransaction();
+                    $sql = "DELETE FROM recompensa WHERE id=:id;";
+                    $stmt = $this->con->prepare($sql);
+                    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                    $stmt->execute();
+                    $this->con->commit();
+    
+                    $userEmail = $this->getUserEmail($usuarioId);
+                    $userName = $this->getUserName($usuarioId);
+    
+                    if (!empty($userEmail) && isset($userEmail[0]['email']) && !empty($userName)) {
+                        $email = $userEmail[0]['email'];
+                        $nombreUsuario = $userName['nombre_completo'];
+    
+                        $this->sendRecompensaRemovalEmail($email, $nombreUsuario, $detalleRecompensa);
+                    }
+                }
+    
                 return $stmt->rowCount();
             } else {
                 throw new Exception("ID no válido.");
             }
         } catch (Exception $e) {
-            $this->con->rollBack();
+            if ($this->con->inTransaction()) {
+                $this->con->rollBack();
+            }
             throw new Exception("Error en delete: " . $e->getMessage());
         }
     }
+    
 
     function readOne($id) {
         $this->conexion();
