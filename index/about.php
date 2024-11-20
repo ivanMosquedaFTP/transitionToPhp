@@ -1,77 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require('../admin/views/header.php');?>
+<section class="about-us py-5 bg-light">
+    <div class="container">
+        <h1 class="text-center mb-4">Acerca de Nosotros</h1>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About CoolHats Store</title>
-  <link href="../css/main.css" rel="stylesheet">
-  <link href="css/main.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="../index.html">CoolHats Store</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contacto</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="location.html">Ubicacion</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="testimonial.html">Testimonios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="shop.html">Comprar</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Clientes
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="frequentClientBenefits.html">Beneficios a clientes
-                    frecuentes</a></li>
-                <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
-              </ul>
-            </li>
-          </ul>
-          <a class="whitedOut" href="login.html">Iniciar sesion</a>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h2 class="mb-3">Nuestra Historia</h2>
+                <p>
+                    Fundada en 2020, <strong>CoolHats</strong> nació de la necesidad de llenar un vacío en el mercado de accesorios urbanos. Desde nuestros humildes comienzos en un pequeño local, hemos crecido hasta convertirnos en una comunidad vibrante de amantes del streetwear. 
+                    Inspirados por las calles, la música y la cultura urbana, seleccionamos gorras que cuentan historias y reflejan la individualidad de quienes las llevan.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <img src="../image/about/historia.jpg" class="img-fluid rounded shadow" alt="Nuestra Historia">
+            </div>
         </div>
-      </div>
-    </nav>
 
-    <center>
-      <nav class="navbar bg-body-tertiary bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-          <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Acerca</li>
-            </ol>
-          </nav>
+        <div class="row mt-5">
+            <div class="col-md-6 order-md-2">
+                <h2 class="mb-3">Nuestra Misión</h2>
+                <p>
+                    En <strong>CoolHats</strong>, nuestra misión es simple pero poderosa: empoderar a las personas para que expresen su estilo único a través de accesorios de alta calidad. Creemos que cada gorra es una declaración de identidad y nos esforzamos por ofrecer productos que no solo se vean bien, sino que también resistan el paso del tiempo.
+                </p>
+            </div>
+            <div class="col-md-6 order-md-1">
+                <img src="../image/about/mision.jpg" class="img-fluid rounded shadow" alt="Nuestra Misión">
+            </div>
         </div>
-      </nav>
-    </center>
-  </header>
 
-  <main>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h2 class="mb-3 text-center">Nuestros Valores</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Creatividad</h5>
+                                <p class="card-text">
+                                    Innovamos constantemente para ofrecer diseños únicos que capturan la esencia de la cultura urbana.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Autenticidad</h5>
+                                <p class="card-text">
+                                    Cada producto es seleccionado cuidadosamente para garantizar su autenticidad y calidad.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">Comunidad</h5>
+                                <p class="card-text">
+                                    Más allá de una tienda, somos una comunidad apasionada que comparte el amor por el streetwear.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-3">Únete a Nuestra Comunidad</h2>
+                <p class="text-muted">
+                    Explora nuestras colecciones exclusivas y únete a una comunidad de personas que viven y respiran la cultura urbana.
+                </p>
+                <a href="#" class="btn btn-primary btn-lg mt-3">Explora Nuestras Gorras</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-  </main>
-</body>
-
-</html>
+<?php require('../admin/views/footer.php')?>
