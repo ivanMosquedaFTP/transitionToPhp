@@ -28,7 +28,7 @@
               <a class="nav-link" href="../index/about.php">Acerca</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../index/contact.html">Contacto</a>
+              <a class="nav-link" href="../index/contact.php">Contacto</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../index/location.html">Ubicacion</a>
