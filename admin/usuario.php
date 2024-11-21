@@ -24,6 +24,9 @@ switch ($accion) {
     case 'nuevo': {
         // $data=$_POST['data'];
         $data = $_POST;
+        // echo'<pre />';
+        // print_r($data);
+        // die();
         $resultado = $app->create($data);
         if ($resultado) {
             $mensaje = "Usuario dado de alta correctamente";
@@ -35,6 +38,25 @@ switch ($accion) {
 
         $usuarios = $app->readAll();
         include('views/usuario/index.php');
+        break;
+    }
+
+    case 'nuevoDesdeSnippet': {
+        // $data=$_POST['data'];
+        $data = $_POST;
+        // echo'<pre />';
+        // print_r($data);
+        // die();
+        $resultado = $app->createDesdeSnippet($data);
+        if ($resultado) {
+            $mensaje = "Usuario dado de alta correctamente";
+            $tipo = "success";
+        } else {
+            $mensaje = "El usuario no ha sido dado de alta";
+            $tipo = "danger";
+        }
+        include("../index.php");
+
         break;
     }
 

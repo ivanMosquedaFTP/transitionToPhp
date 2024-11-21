@@ -58,6 +58,7 @@ desc recompensa;
 desc usuario;
 select * from producto;
 select * from usuario;
+select * from rol;
 select u.email from usuario u inner join recompensa r on u.id=r.usuario_id;
 SELECT u.nombre_completo AS nombre_completo FROM usuario u inner join recompensa r on u.id=r.usuario_id WHERE u.id = 3;
 
