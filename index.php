@@ -61,4 +61,4 @@
     <br>
   </main>
 </center>
-<?php require('admin/views/footer.php');?>
+<?php require('admin/views/footerFromDocumentRoot.php');?>
