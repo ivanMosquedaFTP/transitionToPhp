@@ -37,7 +37,7 @@
               <a class="nav-link" href="index/testimonial.html">Testimonios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index/shop.html">Comprar</a>
+              <a class="nav-link" href="index/shop.php">Comprar</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
