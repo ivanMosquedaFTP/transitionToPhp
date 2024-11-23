@@ -36,7 +36,7 @@
 
                 <!-- Botones de registro y redes sociales -->
                 <div class="text-center">
-                    <p>¿No tienes cuenta? <a href="#!">Regístrate</a></p>
+                    <p>¿No tienes cuenta? <a href="login.php?accion=register">Regístrate</a></p>
                 </div>
             </form>
         </div>

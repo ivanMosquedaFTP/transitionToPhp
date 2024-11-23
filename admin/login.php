@@ -5,6 +5,10 @@
   $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 
   switch ($accion) {
+    case 'register': {
+      break;
+    }
+
     case 'login': {
       $email = $_POST['data']['email'];
       $contrasena = $_POST['data']['contrasena'];
