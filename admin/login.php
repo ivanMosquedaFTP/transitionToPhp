@@ -6,6 +6,17 @@
 
   switch ($accion) {
     case 'register': {
+      include('views/register/index.php');
+      break;
+    }
+
+    case 'preLogin': {
+      include('views/login/index.php');
+      break;
+    }
+
+    case 'preCreate': {
+      include('views/register/index.php');
       break;
     }
 

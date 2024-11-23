@@ -107,6 +107,53 @@
     return false;
   }
 
+  function createDesdeLogin($data) {
+    $result = [];
+    $insertar = [];
+    $this->conexion();
+    $rol = 1;
+    $data = $data['data'];
+    $this->con->beginTransaction();
+
+    try {
+      $sql = "INSERT INTO usuario(nombre_completo, telefono, contrasena, email) VALUES(:nombre_completo, :telefono, md5(:contrasena), :email)";
+      
+      $insertar = $this->con->prepare($sql);
+      $insertar->bindParam(':nombre_completo', $data['nombre_completo'], PDO::PARAM_STR);
+      $insertar->bindParam(':telefono', $data['telefono'], PDO::PARAM_STR);
+      $insertar->bindParam(':contrasena', $data['contrasena'], PDO::PARAM_STR);
+      $insertar->bindParam(':email', $data['email'], PDO::PARAM_STR);
+      
+      $insertar->execute();
+
+      $sql = "SELECT id FROM usuario WHERE email = :email";
+      $consulta = $this->con->prepare($sql);
+      $consulta->bindParam(':email', $data['email'], PDO::PARAM_STR);
+      $consulta->execute();
+
+      $datos = $consulta->fetch(PDO::FETCH_ASSOC);
+      $id = isset($datos['id']) ? $datos['id'] : null;
+
+      if (!is_null($id)) {
+        $sql = "INSERT INTO usuario_rol(id_usuario, id_rol) VALUES(:id_usuario, :id_rol)";
+        $insertar_rol = $this->con->prepare($sql);
+        $insertar_rol->bindParam(':id_usuario', $id, PDO::PARAM_INT);
+        $insertar_rol->bindParam(':id_rol', $rol, PDO::PARAM_INT);
+        $insertar_rol->execute();
+
+        $this->con->commit();
+        $result = $insertar->rowCount();
+      }
+     
+      return $result;
+    } catch(Exception $e) {
+      $this->con->rollback();
+      echo "Error: " . $e->getMessage();
+    }
+
+    return false;
+  }
+
   function define($data) {
     if (!is_null($data)) {
       $insertar = [];

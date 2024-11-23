@@ -4,7 +4,7 @@ include ('rol.class.php');
 
 $app = new usuario();
 $appRole = new rol();
-$app -> checkRole('administrador');
+// $app -> checkRole('administrador');
 
 // acciones = crear y nuevo = agregar un nuevo usuario
 // acciones = definir = definir nuevos permisos
@@ -60,7 +60,27 @@ switch ($accion) {
         break;
     }
 
+    case 'nuevoDesdeLogin': {
+        // $data=$_POST['data'];
+        $data = $_POST;
+        // echo'<pre />';
+        // print_r($data);
+        // die();
+        $resultado = $app->createDesdeLogin($data);
+        if ($resultado) {
+            $mensaje = "Usuario dado de alta correctamente";
+            $tipo = "success";
+        } else {
+            $mensaje = "El usuario no ha sido dado de alta";
+            $tipo = "danger";
+        }
+        include("../index.php");
+
+        break;
+    }
+
     case 'actualizar': {
+        $app -> checkRole('administrador');
         $usuarios = $app -> readOne($id); 
         $roles = $appRole -> readAll();
         $misRoles = $app -> readAllRoles($id);
@@ -70,6 +90,7 @@ switch ($accion) {
     }
     
     case 'modificar': {
+        $app -> checkRole('administrador');
         $data= $_POST;
         $result=$app->update($id,$data);
         if($result){
@@ -85,6 +106,7 @@ switch ($accion) {
     }
 
     case 'eliminar': {
+        $app -> checkRole('administrador');
         if (!is_null($id)) {
             if (is_numeric($id)) {
                 $resultado = $app -> delete($id);

@@ -7,9 +7,17 @@
         <div class="card-body">
             <div class="text-center mb-4">
                 <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="user-icon" width="80" class="mb-3">
-                <h3 class="card-title">Iniciar Sesión</h3>
+                <h3 class="card-title">Crear cuenta</h3>
             </div>
-            <form method="post" action="login.php?accion=login">
+            <form method="post" action="usuario.php?accion=nuevoDesdeLogin">
+                <div class="form-outline mb-4">
+                    <input type="text" name="data[nombre_completo]" id="nombre" class="form-control" required="true"/>
+                    <label class="form-label" for="nombre">Nombre completo</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" name="data[telefono]" id="telefono" class="form-control" required="true"/>
+                    <label class="form-label" for="telefono">Numero de telefono</label>
+                </div>
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                     <input type="email" name="data[email]" id="email" class="form-control" required="true"/>
@@ -32,11 +40,11 @@
                 </div>
 
                 <!-- Botón de inicio de sesión -->
-                <button type="submit" value="entrar al sistema" name="enviar" class="btn btn-primary btn-block mb-4">Iniciar Sesión</button>
+                <button type="submit" value="entrar al sistema" name="enviar" class="btn btn-primary btn-block mb-4">Crear cuenta</button>
 
                 <!-- Botones de registro y redes sociales -->
                 <div class="text-center">
-                    <p>¿No tienes cuenta? <a href="login.php?accion=preCreate">Regístrate</a></p>
+                    <p>¿Ya tienes cuenta? <a href="login.php?accion=preLogin">Inicia sesion</a></p>
                 </div>
             </form>
         </div>
