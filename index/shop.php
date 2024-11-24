@@ -23,8 +23,7 @@
                         <p class="card-text"><small class="text-muted">Publicado: <?php echo htmlspecialchars($producto['fecha_publicacion']); ?></small></p>
                         <p class="card-text"><small class="text-muted">Identificador: <?php echo htmlspecialchars($producto['id']); ?></small></p>
                         <div class="d-flex justify-content-between align-items-center">
-                        <a href="producto.php?accion=actualizar&id=<?php echo $producto['id']; ?>" class="btn btn-primary">Editar</a>
-                        <a href="producto.php?accion=eliminar&id=<?php echo $producto['id']; ?>" class="btn btn-danger">Eliminar</a>
+                        <a href="producto.php?accion=toBeDefined&id=<?php echo $producto['id']; ?>" class="btn btn-success">Comprar</a>
                         </div>
                     </div>
                     </div>
