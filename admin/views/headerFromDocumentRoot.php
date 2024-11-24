@@ -47,7 +47,6 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="index/frequentClientBenefits.html">Beneficios a clientes
                     frecuentes</a></li>
-                <li><a class="dropdown-item" href="index/profile.html">Perfil</a></li>
               </ul>
             </li>
           </ul>
