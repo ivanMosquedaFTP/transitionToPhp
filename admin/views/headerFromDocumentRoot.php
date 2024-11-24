@@ -1,3 +1,14 @@
+<?php
+  if (strpos($_SERVER['REQUEST_URI'], 'shop.php') !== false) {
+      require_once('../config.class.php');
+      require_once('../sistema.class.php');
+      require_once('../admin/producto.class.php');
+
+      $app = new producto();
+
+      $productos = $app -> readAll();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,4 +1,4 @@
-<?php require('../admin/views/header.php');?>
+<?php require('../admin/views/headerFromDocumentRoot.php');?>
 <?php if (isset($mensaje)): $app -> alerta($tipo, $mensaje); endif;?>
   <main>
     <div class="row">
