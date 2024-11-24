@@ -17,7 +17,7 @@
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">CoolHats Store</a>
+        <a class="navbar-brand" href="../../index.php">CoolHats Store</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,7 @@
         <p class="col-md-8 fs-4">Somos una tienda orgullozamente celayense representando la cultura StreetWear para
           México y nuestro querido Celaya. Nuestro catálogo es limitado por el momento, pero seguimos trabajando cada
           día para traerte más productos novedosos y perfectos para ti.</p>
-        <a class="btn btn-lg btn-danger" href="../index/shop.html">Comprar</a>
+        <a class="btn btn-lg btn-danger" href="../index/shop.php">Comprar</a>
       </div>
     </div>
   </header>
