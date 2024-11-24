@@ -28,7 +28,7 @@
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">CoolHats Store</a>
+        <a class="navbar-brand" href="../index.php">CoolHats Store</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,19 +36,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="index/about.php">Acerca</a>
+              <a class="nav-link" href="about.php">Acerca</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index/contact.php">Contacto</a>
+              <a class="nav-link" href="contact.php">Contacto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index/location.html">Ubicacion</a>
+              <a class="nav-link" href="location.html">Ubicacion</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index/testimonial.html">Testimonios</a>
+              <a class="nav-link" href="testimonial.html">Testimonios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index/shop.php">Comprar</a>
+              <a class="nav-link" href="shop.php">Comprar</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -56,9 +56,8 @@
                 Clientes
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="index/frequentClientBenefits.html">Beneficios a clientes
+                <li><a class="dropdown-item" href="frequentClientBenefits.html">Beneficios a clientes
                     frecuentes</a></li>
-                <li><a class="dropdown-item" href="index/profile.html">Perfil</a></li>
               </ul>
             </li>
           </ul>
@@ -73,7 +72,7 @@
         <p class="col-md-8 fs-4">Somos una tienda orgullozamente celayense representando la cultura StreetWear para
           México y nuestro querido Celaya. Nuestro catálogo es limitado por el momento, pero seguimos trabajando cada
           día para traerte más productos novedosos y perfectos para ti.</p>
-        <a class="btn btn-lg btn-danger" href="index/shop.php">Comprar</a>
+        <a class="btn btn-lg btn-danger" href="shop.php">Comprar</a>
       </div>
     </div>
   </header>
