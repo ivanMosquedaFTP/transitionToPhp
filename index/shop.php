@@ -9,9 +9,9 @@
                     <div class="card-img-container">
                         <img src="<?php 
                                     if(file_exists("../image/shop/".$producto['foto'])) {
-                                    echo("../image/shop/".$producto['foto']);
+                                        echo("../image/shop/".$producto['foto']);
                                     } else {
-                                    echo("../image/shop/default.png");
+                                        echo("../image/shop/default.png");
                                     }
                                 ?>" class="card-img-top">
                     </div>
@@ -23,7 +23,7 @@
                         <p class="card-text"><small class="text-muted">Publicado: <?php echo htmlspecialchars($producto['fecha_publicacion']); ?></small></p>
                         <!-- <p class="card-text"><small class="text-muted">Identificador: <?php echo htmlspecialchars($producto['id']); ?></small></p> -->
                         <div class="d-flex justify-content-between align-items-center">
-                        <a href="producto.php?accion=toBeDefined&id=<?php echo $producto['id']; ?>" class="btn btn-success">Comprar</a>
+                            <a href="../admin/producto.php?accion=descripcion&id=<?php echo $producto['id']; ?>" class="btn btn-success">Ver listado</a>
                         </div>
                     </div>
                     </div>
