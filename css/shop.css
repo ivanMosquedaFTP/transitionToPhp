@@ -1,0 +1,20 @@
+.card {
+    height: 400px; /* Tamaño uniforme para todas las tarjetas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-img-container {
+    height: 200px; /* Altura fija para el contenedor de imágenes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Recorta la imagen si excede los límites */
+}
+
+.card-img-container img {
+    height: 100%; /* Ajusta la altura al contenedor */
+    width: auto; /* Mantiene proporciones */
+    object-fit: cover; /* Recorta la imagen si es necesario */
+}
