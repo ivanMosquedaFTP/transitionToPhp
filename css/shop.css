@@ -1,20 +1,33 @@
 .card {
-    height: 400px; /* Tamaño uniforme para todas las tarjetas */
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .card-img-container {
-    height: 200px; /* Altura fija para el contenedor de imágenes */
+    height: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Recorta la imagen si excede los límites */
+    overflow: hidden;
 }
 
 .card-img-container img {
-    height: 100%; /* Ajusta la altura al contenedor */
-    width: auto; /* Mantiene proporciones */
-    object-fit: cover; /* Recorta la imagen si es necesario */
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+.card-body {
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.card-title {
+    font-size: 1rem;
+}
+
+.card-text {
+    font-size: 0.85rem;
 }
