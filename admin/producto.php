@@ -82,6 +82,12 @@ switch ($accion) {
         break;
     }
 
+    case 'descripcion': {
+        $producto = $app -> readOne($id); 
+        include('views/producto/descripcion.php');
+        break;
+    }
+
     default: {
         $productos = $app->readAll();
         include 'views/producto/index.php';
