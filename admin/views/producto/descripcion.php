@@ -7,6 +7,9 @@
             <input type="hidden" name="cmd" value="_xclick">
             <!-- <input type="hidden" name="business" value="coolhatscelaya@gmail.com"> -->
             <input type="hidden" name="business" value="sb-thsd034331470@business.example.com">
+
+            <input type="hidden" name="notify_url" value="https://4808-177-227-62-217.ngrok-free.app/transitionToPhp/admin/views/producto/notificacion.php">
+
             <input type="hidden" name="item_name" value="<?php echo htmlspecialchars($producto['nombre_producto']); ?>">
             <input type="hidden" name="item_number" value="<?php echo htmlspecialchars($producto['id']); ?>">
             <input type="hidden" name="amount" value="<?php echo number_format($producto['precio'], 2); ?>">
