@@ -1,0 +1,15 @@
+client id
+Ad6KF26oryLqePjY5Dh8OUbLtXLaR41mvkGfTSpF_OZdcBQ63Ilp8_NY100LHX__DQTzLbDSU90CJzSE
+client secret
+EAPCGbnaBE_7vhM2xxl-Pj2DJQKE5E7aCo93KZVUxNL8WSL1r_6LDYOvEBckq8Z7l7A47Fxuk80RNtDp
+
+sandbox client
+sb-d9pif34318921@personal.example.com
+JM}r8S$!
+
+sandbox business
+sb-thsd034331470@business.example.com
+9V{gDx&m
+
+debugging
+http://localhost/admin/views/producto/confirmacion.php?PayerID=V36GSN27F9LJN
