@@ -3,7 +3,6 @@
 <main>
     <div class="container mt-4">
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-        <!-- <form action="https://sandbox.paypal.com" method="post"></form> -->
             <!-- Configuración de PayPal -->
             <input type="hidden" name="cmd" value="_xclick">
             <!-- <input type="hidden" name="business" value="coolhatscelaya@gmail.com"> -->
@@ -12,8 +11,8 @@
             <input type="hidden" name="item_number" value="<?php echo htmlspecialchars($producto['id']); ?>">
             <input type="hidden" name="amount" value="<?php echo number_format($producto['precio'], 2); ?>">
             <input type="hidden" name="currency_code" value="MXN">
-            <input type="hidden" name="return" value="http://localhost/admin/views/producto/confirmacion.php">
-            <input type="hidden" name="cancel_return" value="http://localhost/admin/views/producto/cancelar.php">
+            <input type="hidden" name="return" value="http://localhost/transitionToPhp/admin/views/producto/confirmacion.php">
+            <input type="hidden" name="cancel_return" value="http://localhost/transitionToPhp/admin/views/producto/cancelar.php">
 
             <div class="row">
                 <div class="col-md-6">
@@ -26,10 +25,10 @@
                         <h2 class="text-primary"><?php echo htmlspecialchars($producto['nombre_producto']); ?></h2>
                         <p class="text-muted"><?php echo htmlspecialchars($producto['descripcion']); ?></p>
                         <p class="text-success"><strong>Precio:</strong> $<?php echo number_format($producto['precio'], 2); ?></p>
-                        <p class="text-secondary"><strong>Stock:</strong> <?php echo htmlspecialchars($producto['stock']); ?></p>
+                        <p class="text-secondary"><strong>Stock:</strong> <?php if ($producto['stock'] > 0) { echo htmlspecialchars($producto['stock']); } else { echo '<h2>Sin existencias</h2>'; } ?></p>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-success btn-lg w-100 mt-3">Comprar</button>
+                        <button type="submit" class="btn btn-success btn-lg w-100 mt-3 <?php if ($producto['stock'] == 0) { echo 'disabled'; } ?>">Comprar</button>
                     </div>
                 </div>
             </div>
