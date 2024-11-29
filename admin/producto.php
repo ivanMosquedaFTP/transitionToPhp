@@ -1,17 +1,18 @@
 <?php
 require_once ('producto.class.php');
 $app = new producto();
-$app -> checkRole('administrador');
 
 $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
+        $app -> checkRole('administrador');
         include 'views/producto/crear.php';
         break;
     }
 
     case 'nuevo': {
+        $app -> checkRole('administrador');
         $data=$_POST['data'];
         $resultado = $app->create($data);
         if ($resultado) {
@@ -28,12 +29,14 @@ switch ($accion) {
     }
 
     case 'actualizar': {
+        $app -> checkRole('administrador');
         $productos = $app -> readOne($id); 
         include('views/producto/crear.php');
         break;
     }
     
     case 'modificar': {
+        $app -> checkRole('administrador');
         if ($id && is_numeric($id)) {
             $data = $_POST['data'];
             $imagen_actual = $app->getImageById($id);
@@ -65,6 +68,7 @@ switch ($accion) {
     }
 
     case 'eliminar': {
+        $app -> checkRole('administrador');
         if (!is_null($id)) {
             if (is_numeric($id)) {
                 $resultado = $app -> delete($id);
