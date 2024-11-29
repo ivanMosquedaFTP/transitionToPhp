@@ -1,49 +1,34 @@
 <?php
-if (isset($_GET['PayerID'])) {
-    $payer_id = $_GET['PayerID'];
+// Ruta del archivo de log
+$log_file = '../../../admin/views/producto/log_ipn.txt';
 
-    // Credenciales de la API de PayPal
-    $paypal_user = 'sb-thsd034331470_api1.business.example.com'; // Reemplaza con tu usuario de la API
-    $paypal_password = 'G9A4Y7DB24TGUS8S'; // Reemplaza con tu contraseña de la API
-    $paypal_signature = 'AStwKS3.L4rNUPfkl7TOO9eahVmAAZHGKtmjCPS938-Pb4z0ATyPVfYW'; // Reemplaza con tu firma de la API
-    $endpoint = "https://api-3t.sandbox.paypal.com/nvp";
+// Leer el archivo de log
+$log_data = file_get_contents($log_file);
 
-    // Parámetros para consultar los detalles de la transacción
-    $params = [
-        "METHOD" => "GetTransactionDetails", // Método alternativo para usar con PayerID
-        "USER" => $paypal_user,
-        "PWD" => $paypal_password,
-        "SIGNATURE" => $paypal_signature,
-        "VERSION" => "204.0",
-        "PAYERID" => $payer_id, // Usa solo el PayerID si el token no está disponible
-    ];
+// Verificar si el archivo se ha leído correctamente
+if ($log_data !== false) {
+    // Buscar los valores específicos en el archivo de log usando expresiones regulares
+    preg_match('/\[mc_gross\]\s*=>\s*([0-9\.]+)/', $log_data, $mc_gross_matches);
+    preg_match('/\[payment_date\]\s*=>\s*([^\n]+)/', $log_data, $payment_date_matches);
+    preg_match('/\[payer_email\]\s*=>\s*([^\n]+)/', $log_data, $payer_email_matches);
+    preg_match('/\[item_number\]\s*=>\s*(\d+)/', $log_data, $item_number_matches);
+    preg_match('/\[quantity\]\s*=>\s*(\d+)/', $log_data, $quantity_matches);
 
-    // Realiza la solicitud a la API de PayPal
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $endpoint);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    // Asignar los valores encontrados o un valor por defecto si no se encuentran
+    $mc_gross = isset($mc_gross_matches[1]) ? $mc_gross_matches[1] : 'No disponible';
+    $payment_date = isset($payment_date_matches[1]) ? $payment_date_matches[1] : 'No disponible';
+    $payer_email = isset($payer_email_matches[1]) ? $payer_email_matches[1] : 'No disponible';
+    $item_number = isset($item_number_matches[1]) ? $item_number_matches[1] : 'No disponible';
+    $quantity = isset($quantity_matches[1]) ? $quantity_matches[1] : 'No disponible';
 
-    $response = curl_exec($curl);
-    curl_close($curl);
-
-    // Convierte la respuesta en un arreglo
-    parse_str($response, $parsed_response);
-
-    // Verifica si la solicitud fue exitosa
-    if ($parsed_response["ACK"] == "Success") {
-        echo "<h3>Detalles de la Transacción</h3>";
-        echo "<pre>";
-        print_r($parsed_response); // Imprime todos los datos de la transacción
-        echo "</pre>";
-    } else {
-        echo "<h3>Error al obtener detalles de la transacción:</h3>";
-        echo "<pre>";
-        print_r($parsed_response); // Imprime el error devuelto por PayPal
-        echo "</pre>";
-    }
+    // Mostrar los datos en la página
+    echo "<h3>Detalles de la transacción:</h3>";
+    echo "Monto: " . $mc_gross . "<br>";
+    echo "Fecha de pago: " . $payment_date . "<br>";
+    echo "Email del pagador: " . $payer_email . "<br>";
+    echo "Número del producto: " . $item_number . "<br>";
+    echo "Cantidad: " . $quantity . "<br>";
 } else {
-    echo "No se recibió el PayerID en la URL.";
+    echo "Error al leer el archivo de log.";
 }
 ?>
