@@ -10,8 +10,17 @@ $accion = (isset($_GET['accion']))?$_GET['accion'] : NULL;
 $id=(isset($_GET['id']))?$_GET['id']:null;
 switch ($accion) {
     case 'crear': {
-        $usuarios = $appUsuarios -> readAll($id); 
-        $productos = $appProductos -> readAll($id); 
+        $usuarios = $appUsuarios -> readAll(); 
+        $productos = $appProductos -> readAll(); 
+        $ventas = $app -> readAll(); 
+        // echo'<pre/>';
+        // echo'inicia usuarios';
+        // print_r($usuarios);
+        // echo'inicia productos';
+        // print_r($productos);
+        // echo'inicia ventas';
+        // print_r($ventas);
+        // die();
         include 'views/venta/crear.php';
         break;
     }

@@ -8,7 +8,6 @@
     <div class="col-md-10">
         <form method="post" action="venta.php?accion=<?php if($accion=="crear"):echo('nuevo');else:echo('modificar&id='.$id);endif;?>">
         <div class="mb-3">
-            //TODO:fix the reference
             <label for="usuario_id" class="form-label">Usuario</label>
             <select name="data[usuario_id]" id="" class="form-select">
               <?php foreach($usuarios as $usuario):?> 
@@ -41,6 +40,16 @@
         <div class="mb-3">
             <label for="cantidad" class="form-label">Cantidad del producto de la venta</label>
             <input class="form-control" type="text" name="data[cantidad]" placeholder="Escribe aqui la cantidad del producto del venta"  value="<?php if(isset($ventas["cantidad"])):echo($ventas['cantidad']);endif;?>"  id="cantidad"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="monto" class="form-label">Monto de la venta</label>
+            <input class="form-control" type="text" name="data[monto]" placeholder="Escribe aqui el monto del venta"  value="<?php if(isset($producto["precio"])):echo($producto['precio']);endif;?>"  id="monto"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="fecha" class="form-label">Fecha de la venta</label>
+            <input class="form-control" type="date" name="data[fecha_venta]" value="<?php if(isset($ventas["fecha_venta"])):echo($ventas['fecha_venta']);endif;?>"  id="fecha"/>
         </div>
 
         <input type="submit" value="Guardar" name="data[enviar]" class="btn btn-primary w-100">

@@ -56,6 +56,7 @@ desc permiso;
 desc producto;
 desc recompensa;
 desc usuario;
+desc venta;
 select * from producto;
 select * from usuario;
 select * from rol;
