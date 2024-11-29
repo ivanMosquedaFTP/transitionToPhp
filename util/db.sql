@@ -25,6 +25,7 @@ CREATE TABLE venta (
     usuario_id INT,
     producto_id INT,
     cantidad INT NOT NULL,
+    monto double,
     fecha_venta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (usuario_id) REFERENCES usuario(id),
     FOREIGN KEY (producto_id) REFERENCES producto(id)
