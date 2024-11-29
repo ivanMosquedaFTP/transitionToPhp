@@ -1,6 +1,7 @@
 <?php
 // Ruta del archivo de log
-$log_file = '../../../admin/views/producto/log_ipn.txt';
+// $log_file = '../../../admin/views/producto/log_ipn.txt';
+$log_file = 'log_ipn.txt';
 
 // Leer el archivo de log
 $log_data = file_get_contents($log_file);
