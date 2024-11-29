@@ -3,7 +3,6 @@
 <main>
     <div class="container mt-4">
         <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-            <!-- Configuración de PayPal -->
             <input type="hidden" name="cmd" value="_xclick">
             <!-- <input type="hidden" name="business" value="coolhatscelaya@gmail.com"> -->
             <input type="hidden" name="business" value="sb-thsd034331470@business.example.com">
