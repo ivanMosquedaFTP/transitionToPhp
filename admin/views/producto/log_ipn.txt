@@ -6,7 +6,7 @@ Array
     [payer_id] => V36GSN27F9LJN
     [address_street] => Calle Juarez 1
 Col. Cuauhtemoc
-    [payment_date] => 17:27:29 Nov 24, 2024 PST
+    [payment_date] => 21:36:47 Nov 28, 2024 PST
     [payment_status] => Completed
     [charset] => UTF-8
     [address_zip] => 11580
@@ -21,9 +21,9 @@ Col. Cuauhtemoc
     [address_country] => Mexico
     [address_city] => Miguel Hidalgo
     [quantity] => 1
-    [verify_sign] => A.kyZ9AjzUix-aQ8t951OfOECkv9A0ayTYBj0EYNQhLEm1TxrCCB9tXX
+    [verify_sign] => A37ljju0wTvGa4UumtLT0baFTK01ANVdFSoWeOIX6vnslno-jwey1zKU
     [payer_email] => sb-d9pif34318921@personal.example.com
-    [txn_id] => 7CG15603118497452
+    [txn_id] => 4GD77791H8760424V
     [payment_type] => instant
     [last_name] => Doe
     [address_state] => Ciudad de Mexico
@@ -42,5 +42,5 @@ Col. Cuauhtemoc
     [shipping_method] => Default
     [transaction_subject] => 
     [payment_gross] => 
-    [ipn_track_id] => f9195499db253
+    [ipn_track_id] => f190498bbd690
 )
