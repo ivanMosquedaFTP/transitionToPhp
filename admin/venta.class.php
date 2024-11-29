@@ -6,11 +6,18 @@ class venta extends sistema {
         $this->conexion();
         $this->con->beginTransaction();
         try {
-            $sql = "INSERT INTO venta(usuario_id, producto_id, cantidad) VALUES(:usuario_id, :producto_id, :cantidad);";
-            $stmt = $this->con->prepare($sql);
+            if (is_null($data['fecha_venta'])) {
+                $sql = "INSERT INTO venta(usuario_id, producto_id, cantidad, monto) VALUES(:usuario_id, :producto_id, :cantidad, :monto);";
+                $stmt = $this->con->prepare($sql);
+            } else {
+                $sql = "INSERT INTO venta(usuario_id, producto_id, cantidad, monto, fecha_venta) VALUES(:usuario_id, :producto_id, :cantidad, :monto, :fecha_venta);";
+                $stmt = $this->con->prepare($sql);
+                $stmt->bindParam(':fecha_venta', $data['monto'], PDO::PARAM_STR);
+            }
             $stmt->bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_INT);
             $stmt->bindParam(':producto_id', $data['producto_id'], PDO::PARAM_INT);
             $stmt->bindParam(':cantidad', $data['cantidad'], PDO::PARAM_INT);
+            $stmt->bindParam(':monto', $data['monto'], PDO::PARAM_INT);
             $stmt->execute();
             $this->con->commit();
             return $stmt->rowCount();
@@ -25,11 +32,18 @@ class venta extends sistema {
         $this->con->beginTransaction();
         try {
             if (is_numeric($id)) {
-                $sql = "UPDATE venta SET usuario_id=:usuario_id, producto_id=:producto_id, cantidad=:cantidad WHERE id=:id;";
-                $stmt = $this->con->prepare($sql);
+                if (is_null($data['fecha_venta'])) {
+                    $sql = "UPDATE venta SET usuario_id=:usuario_id, producto_id=:producto_id, cantidad=:cantidad, monto=:monto WHERE id=:id;";
+                    $stmt = $this->con->prepare($sql);
+                } else {
+                    $sql = "UPDATE venta SET usuario_id=:usuario_id, producto_id=:producto_id, cantidad=:cantidad, monto=:monto, fecha_venta=:fecha_venta WHERE id=:id;";
+                    $stmt = $this->con->prepare($sql);
+                    $stmt->bindParam(':fecha_venta', $data['monto'], PDO::PARAM_STR);
+                }
                 $stmt->bindParam(':usuario_id', $data['usuario_id'], PDO::PARAM_INT);
                 $stmt->bindParam(':producto_id', $data['producto_id'], PDO::PARAM_INT);
                 $stmt->bindParam(':cantidad', $data['cantidad'], PDO::PARAM_INT);
+                $stmt->bindParam(':monto', $data['monto'], PDO::PARAM_INT);
                 $stmt->bindParam(':id', $id, PDO::PARAM_INT);
                 $stmt->execute();
                 $this->con->commit();
