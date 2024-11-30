@@ -1,5 +1,6 @@
 <?php
-require_once ('../sistema.class.php');
+// require_once ('../sistema.class.php');
+require_once(__DIR__ . '/../sistema.class.php');
 
 class venta extends sistema {
     function create($data) {
